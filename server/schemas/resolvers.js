@@ -2,7 +2,7 @@ const {
   AuthenticationError,
   UserInputError,
 } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Restroom } = require("../models");
 const { signToken } = require("../util/auth");
 const { dateScalar } = require("./customScalars");
 
@@ -17,6 +17,14 @@ const resolvers = {
       }
       return User.findOne({ email: ctx.user.email });
     },
+
+    // nearbyRestrooms: async(parent, args, context) => {
+    //   try {
+    //     Restroom.find()
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // }
   },
   Mutation: {
     createUser: async (parent, args) => {
@@ -47,6 +55,19 @@ const resolvers = {
       await user.save();
       return { token, user };
     },
+    createRestroom: async (parent, args, context) => {
+      
+      try {
+        console.log(args)
+        const restroom = await Restroom.create({...args, location: {type: "Point", coordinates: [args.lon, args.lat]}});
+
+        return restroom;
+        
+      } catch (error) {
+        console.log(error)
+      }
+      
+    }
   },
 };
 
