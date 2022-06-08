@@ -23,6 +23,12 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  savedRestrooms: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Restroom",
+    },
+  ],
 });
 
 userSchema.pre("save", async function (next) {
