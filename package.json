@@ -1,0 +1,24 @@
+{
+  "name": "mern-gql-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "engines": {
+    "node": "16.x",
+    "npm": "7.x"
+  },
+  "scripts": {
+    "start": "node server/server.js",
+    "develop": "concurrently -c magenta,cyan \"npm:server\" \"npm:react\"",
+    "react": "cd client && npm start",
+    "server": "cd server && npm run watch",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^6.4.0"
+  }
+}
