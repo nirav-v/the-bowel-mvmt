@@ -5,6 +5,7 @@ import RequireAuth from "./components/RequireAuth";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ProtectedPageExample from "./pages/ProtectedPageExample";
+import SingleRestroom from "./pages/SingleRestroom";
 import SignUp from "./pages/SignUp";
 import { client } from "./util/apolloClient";
 import { AuthProvider } from "./util/auth";
@@ -26,6 +27,14 @@ function App() {
               element={
                 <RequireAuth>
                   <ProtectedPageExample />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/singleRestroom"
+              element={
+                <RequireAuth>
+                  <SingleRestroom />
                 </RequireAuth>
               }
             />
