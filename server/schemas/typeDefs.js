@@ -22,7 +22,7 @@ const typeDefs = gql`
 
     createRestroom( areaDescription: String!, lat: Float, lon: Float, changingStation: Boolean!, keyRequired: Boolean!, adaAccessible: Boolean!): Restroom
   
-    addReview(reviewText: String!, rating: Int!, username: String!): Restroom
+    addReview(restroomId: ID!, reviewText: String!, rating: Int!): Restroom
   }
 
 
@@ -58,7 +58,7 @@ type Location {
   type Review {
     reviewText: String!
     rating: Int!
-    createdAt: Date!
+    createdAt: String
     username: String!
     userId: String!
   }
