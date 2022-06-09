@@ -15,7 +15,7 @@ const resolvers = {
       if (!ctx.user) {
         throw new AuthenticationError("Must be logged in.");
       }
-      return User.findOne({ email: ctx.user.email });
+      return User.findOne({ email: ctx.user.email }).populate('savedRestrooms');
     },
     nearbyRestrooms: async (parent, args, context) => {
       try {
@@ -139,7 +139,7 @@ const resolvers = {
             new: true,
             runValidators: true,
           }
-        );
+        ).populate('savedRestrooms');
       }
       throw new AuthenticationError("You need to be logged in!");
     },
