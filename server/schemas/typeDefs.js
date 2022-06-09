@@ -18,7 +18,6 @@ const typeDefs = gql`
     createUser(email: String!, password: String!, username: String!): Auth
     login(email: String!, password: String!): Auth
     
-
     saveRestroom(_Id: ID!, areaDescription: String!, location: [Int], changingStation: Boolean!, keyRequired: Boolean!, adaAccessible: Boolean!, reviews: [String]): User
 
     createRestroom( areaDescription: String!, lat: Float, lon: Float, changingStation: Boolean!, keyRequired: Boolean!, adaAccessible: Boolean!): Restroom
@@ -29,7 +28,7 @@ const typeDefs = gql`
 
 type Location {
   type: String
-  coordinates: [String]
+  coordinates: [Float]
 }
 
   type Auth {
