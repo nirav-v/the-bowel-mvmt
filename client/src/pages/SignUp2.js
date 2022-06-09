@@ -61,7 +61,7 @@ export default function SignUp2() {
   };
 
   if (isLoggedIn) {
-    // navigate to the home page
+    // navigate to the user page
     return <Navigate to="/userPage" replace />;
   }
   return (
@@ -83,7 +83,7 @@ export default function SignUp2() {
               Sign Up
             </Typography>
             <form onSubmit={handleSubmit}>
-              <Grid container spacing={1}>
+              <Grid container spacing={2}>
                 <Grid xs={12} item>
                   <Typography
                     gutterBottom

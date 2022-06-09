@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import { useAuth } from "../util/auth";
-import duck from "../images/duck.png";
+import blueToilets from "../images/blue_toilets.jpeg";
 import Paper from "@mui/material/Paper";
 import CssBaseline from "@mui/material/CssBaseline";
 import Card from "@mui/material/Card";
@@ -26,7 +26,7 @@ const styles = {
     paddingRight: "0.25em",
   },
   paperContainer: {
-    backgroundImage: `url(${duck})`,
+    backgroundImage: `url(${blueToilets})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     // height: 1300,
@@ -66,6 +66,8 @@ export default function Login2() {
     return <Navigate to={from} replace />
   }
 
+  console.log(formState.email)
+
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
       <CssBaseline />
@@ -85,7 +87,7 @@ export default function Login2() {
               Login
             </Typography>
             <form onSubmit={handleSubmit}>
-              <Grid container spacing={1}>
+              <Grid container spacing={2}>
                 <Grid xs={12} item>
                   <Typography
                     gutterBottom
