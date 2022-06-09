@@ -18,9 +18,9 @@ const restrooms = [
       32.80313911814198
     ]
   },
-  changingStation: false,
-  keyRequired: false,
-  adaAccessible: true,
+  changingStation: true,
+  keyRequired: true,
+  adaAccessible: false,
   reviews: [],
 },
 {
@@ -46,12 +46,14 @@ const restrooms = [
         restrooms.map((restroom) => (
           <div key={restroom._id}>
            <h3 >{restroom.areaDescription}</h3> 
-        <p>Rating: <Rating name="half-rating" defaultValue={4} precision={0.5} /> <AccessibleIcon/> <BabyChangingStationIcon/></p>
+        <p>Rating: <Rating name="half-rating" defaultValue={4} precision={0.5} /> 
+     {restroom.adaAccessible ? <AccessibleIcon/> : null}
+     {restroom.changingStation ?  <BabyChangingStationIcon/> : null}
+         </p>
           </div>
         ))}
-       
-        
 </div>
+   
   )
 }
 
