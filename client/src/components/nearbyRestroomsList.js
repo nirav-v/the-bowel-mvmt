@@ -4,12 +4,16 @@ import AccessibleIcon from '@mui/icons-material/Accessible';
 import BabyChangingStationIcon from '@mui/icons-material/BabyChangingStation';
 import KeyIcon from '@mui/icons-material/Key';
 
-import { NEARBYRESTROOM } from "../util/queries"
+import { NEARBY_RESTROOMS } from "../util/queries"
+
 
 export default function NearbyRestroomList() {
 
 const [userLon, setUserLon] = useState(0)
 const [userLat, setUserLat] = useState(0)
+
+const {loading, data} = useQuery(NEARBY_RESTROOMS)
+console.log(loading)
 
   const getUserLocation = () => {
         if ("geolocation" in navigator) {
