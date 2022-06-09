@@ -1,10 +1,10 @@
-import {useState} from 'react';
+import {useState, useQuery} from 'react';
 import { Rating } from '@mui/material';
 import AccessibleIcon from '@mui/icons-material/Accessible';
 import BabyChangingStationIcon from '@mui/icons-material/BabyChangingStation';
 import KeyIcon from '@mui/icons-material/Key';
 
-
+import { NEARBYRESTROOM } from "../util/queries"
 
 export default function NearbyRestroomList() {
 
@@ -68,6 +68,8 @@ const restrooms = [
 
 }
 ]
+
+
 
   return (
     <div>
