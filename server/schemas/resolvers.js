@@ -18,13 +18,23 @@ const resolvers = {
       return User.findOne({ email: ctx.user.email });
     },
 
-    // nearbyRestrooms: async(parent, args, context) => {
-    //   try {
-    //     Restroom.find()
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
+    nearbyRestrooms: async (parent, args, context) => {
+      try {
+        return Restroom.find({
+          location: {
+            $near: {
+              $maxDistance: 1000,
+              $geometry: {
+                type: "Point",
+                coordinates: [args.lon, args.lat], // takes an array [lon, lat], pass in the userLocation variable
+              },
+            },
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   Mutation: {
     createUser: async (parent, args) => {
@@ -56,19 +66,20 @@ const resolvers = {
       return { token, user };
     },
     createRestroom: async (parent, args, context) => {
-      
       try {
-        console.log(args)
-        const restroom = await Restroom.create({...args, location: {type: "Point", coordinates: [args.lon, args.lat]}});
+        console.log(args);
+        const restroom = await Restroom.create({
+          ...args,
+          location: { type: "Point", coordinates: [args.lon, args.lat] },
+        });
 
         return restroom;
-        
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-      
-    }
+    },
   },
 };
 
 module.exports = resolvers;
+
