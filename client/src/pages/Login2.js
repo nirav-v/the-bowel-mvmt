@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 import { useAuth } from "../util/auth";
-import duck from "../images/duck.png";
+import blueToilets from "../images/blue_toilets.jpeg";
 import Paper from "@mui/material/Paper";
 import CssBaseline from "@mui/material/CssBaseline";
 import Card from "@mui/material/Card";
@@ -26,7 +26,7 @@ const styles = {
     paddingRight: "0.25em",
   },
   paperContainer: {
-    backgroundImage: `url(${duck})`,
+    backgroundImage: `url(${blueToilets})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     // height: 1300,
@@ -34,18 +34,18 @@ const styles = {
 };
 
 const initialFormState = {
-  username: "",
   email: "",
   password: "",
 };
 
-export default function SignUp2() {
-  const { isLoggedIn, signup, loading, error } = useAuth();
+export default function Login2() {
+  const { isLoggedIn, login, loading, error } = useAuth();
   const [formState, setFormState] = useState(initialFormState);
+  const location = useLocation();
 
   useEffect(() => {
     if (error) {
-      // TODO: replace window alert with custom alert.
+      // TODO: replace window alert with custom alert
       alert(error);
     }
   }, [error]);
@@ -57,13 +57,17 @@ export default function SignUp2() {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    signup(formState);
+    login(formState);
   };
 
   if (isLoggedIn) {
-    // navigate to the user page
-    return <Navigate to="/userPage" replace />;
+    // navigate to page user was redirected from or the user page.
+    const from = location.state?.from?.pathname || "/userPage";
+    return <Navigate to={from} replace />
   }
+
+  console.log(formState.email)
+
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
       <CssBaseline />
@@ -80,30 +84,10 @@ export default function SignUp2() {
         >
           <CardContent>
             <Typography gutterBottom variant="h5">
-              Sign Up
+              Login
             </Typography>
             <form onSubmit={handleSubmit}>
               <Grid container spacing={2}>
-                <Grid xs={12} item>
-                  <Typography
-                    gutterBottom
-                    variant="body2"
-                    component="p"
-                    color="textSecondary"
-                  >
-                    Username
-                  </Typography>
-                  <TextField
-                    // label="username"
-                    placeholder="Enter username"
-                    fullWidth
-                    required
-                    autoFocus
-                    value={formState.username.value}
-                    onChange={handleInputChange}
-                    disabled={loading}
-                  />
-                </Grid>
                 <Grid xs={12} item>
                   <Typography
                     gutterBottom
