@@ -8,7 +8,7 @@ const typeDefs = gql`
     "Find the logged in user."
     me: User
 
-    """ nearbyRestrooms(location: [Int]): [Restroom]! """
+ nearbyRestrooms(lon: Float, lat: Float): [Restroom]!
 
     singleRestroom(_id: ID!): Restroom
 
@@ -18,10 +18,9 @@ const typeDefs = gql`
     createUser(email: String!, password: String!, username: String!): Auth
     login(email: String!, password: String!): Auth
     
-
     saveRestroom(_Id: ID!, areaDescription: String!, location: [Int], changingStation: Boolean!, keyRequired: Boolean!, adaAccessible: Boolean!, reviews: [String]): User
 
-    createRestroom( areaDescription: String!, lat: Int, lon: Int, changingStation: Boolean!, keyRequired: Boolean!, adaAccessible: Boolean!): Restroom
+    createRestroom( areaDescription: String!, lat: Float, lon: Float, changingStation: Boolean!, keyRequired: Boolean!, adaAccessible: Boolean!): Restroom
   
     addReview(reviewText: String!, rating: Int!, username: String!): Restroom
   }
@@ -29,7 +28,7 @@ const typeDefs = gql`
 
 type Location {
   type: String
-  coordinates: [Int]
+  coordinates: [Float]
 }
 
   type Auth {
