@@ -73,6 +73,7 @@ const resolvers = {
       return { token, user };
     },
     createRestroom: async (parent, args, context) => {
+     if (context.user){
       try {
         const restroom = await Restroom.create({
           ...args,
@@ -83,6 +84,8 @@ const resolvers = {
       } catch (error) {
         console.log(error);
       }
+     }
+     throw new AuthenticationError("You need to be logged in!");
     },
     addReview: async (parent, { restroomId, reviewText, rating }, context) => {
       if (context.user) {
