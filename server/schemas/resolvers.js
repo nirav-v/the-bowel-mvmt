@@ -17,7 +17,6 @@ const resolvers = {
       }
       return User.findOne({ email: ctx.user.email });
     },
-
     nearbyRestrooms: async (parent, args, context) => {
       try {
         return Restroom.find({
@@ -35,7 +34,15 @@ const resolvers = {
         console.log(error);
       }
     },
+    singleRestroom: async (parent, args, context) => {
+      try {
+        return Restroom.find({ _id: Restroom._id });
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
+
   Mutation: {
     createUser: async (parent, args) => {
       try {
@@ -83,7 +90,49 @@ const resolvers = {
           { _id: restroomId },
           {
             $addToSet: {
-              reviews: { reviewText, rating, username: context.user.username, userId: context.user._id },
+              reviews: {
+                reviewText,
+                rating,
+                username: context.user.username,
+                userId: context.user._id,
+              },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    saveRestroom: async (
+      parent,
+      {
+        _id,
+        areaDescription,
+        location,
+        changingStation,
+        keyRequired,
+        adaAccessible,
+        reviews,
+      },
+      context
+    ) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $addToSet: {
+              savedRestrooms: {
+                _id,
+                areaDescription,
+                location,
+                changingStation,
+                keyRequired,
+                adaAccessible,
+                reviews,
+              },
             },
           },
           {
