@@ -10,7 +10,7 @@ const typeDefs = gql`
 
     nearbyRestrooms(lon: Float, lat: Float): [Restroom]!
 
-    singleRestroom(_id: ID!): Restroom
+    singleRestroom(restroomId: ID!): Restroom
   }
 
   type Mutation {
@@ -19,12 +19,6 @@ const typeDefs = gql`
 
     saveRestroom(
       _id: ID!
-      areaDescription: String!
-      location: [Int]
-      changingStation: Boolean!
-      keyRequired: Boolean!
-      adaAccessible: Boolean!
-      reviews: [String]
     ): User
 
     createRestroom(
