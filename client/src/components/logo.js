@@ -1,4 +1,4 @@
-import Logo from "../images/BMLogo.png";
+import Logo from "../images/BMLogo4.png";
 
 export default function BMLogo() {
   return (
