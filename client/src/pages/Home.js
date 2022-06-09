@@ -7,11 +7,12 @@ export default function Home() {
       {/* TODO: display logged in user's username */}
       <h1>Welcome {isLoggedIn ? user.username : "Guest"}!</h1>
       <hr />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo cumque
-        explicabo ipsum, facilis repellendus omnis amet in accusantium quisquam
-        nam qui consectetur sunt distinctio nemo molestiae ratione. Iure,
-        aliquam debitis.
+      <h3 style={{ textAlignVertical: "center", textAlign: "center" }}>
+        <a href="./restroomsNearYou">Browse restrooms</a> near you and sign up
+        to help us add to our database!
+      </h3>
+      <p style={{ textAlignVertical: "center", textAlign: "center" }}>
+        must share location OR change location settings in browser
       </p>
     </div>
   );
