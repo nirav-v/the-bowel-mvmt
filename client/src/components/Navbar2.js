@@ -33,10 +33,10 @@
 // }
 
 // ----- for tab style ----------
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 
 export default function CenteredTabs() {
   const [value, setValue] = React.useState(0);
@@ -46,10 +46,10 @@ export default function CenteredTabs() {
   };
 
   return (
-    <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+    <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
       <Tabs value={value} onChange={handleChange} centered>
-        <Tab label="Signup" href="/signup"/>
-        <Tab label="Login" href="/login"/>
+        <Tab label="Signup" href="/signup" />
+        <Tab label="Login" href="/login" />
       </Tabs>
     </Box>
   );
