@@ -2,6 +2,7 @@ import React from 'react';
 import { Rating } from '@mui/material';
 import AccessibleIcon from '@mui/icons-material/Accessible';
 import BabyChangingStationIcon from '@mui/icons-material/BabyChangingStation';
+import KeyIcon from '@mui/icons-material/Key';
 
 // restroom list card
 
@@ -49,6 +50,7 @@ const restrooms = [
         <p>Rating: <Rating name="half-rating" defaultValue={4} precision={0.5} /> 
      {restroom.adaAccessible ? <AccessibleIcon/> : null}
      {restroom.changingStation ?  <BabyChangingStationIcon/> : null}
+     {restroom.keyRequired ?  < KeyIcon/> : null}
          </p>
           </div>
         ))}
