@@ -66,7 +66,6 @@ export default function Login2() {
     return <Navigate to={from} replace />
   }
 
-  console.log(formState.email)
 
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
@@ -103,6 +102,7 @@ export default function Login2() {
                     fullWidth
                     required
                     type="email"
+                    name="email"
                     disabled={loading}
                     value={formState.email.value}
                     onChange={handleInputChange}
@@ -123,6 +123,7 @@ export default function Login2() {
                     fullWidth
                     required
                     type="password"
+                    name="password"
                     disabled={loading}
                     value={formState.password.value}
                     onChange={handleInputChange}
