@@ -29,7 +29,7 @@ const restroomSchema = new Schema({
     type: Boolean,
     required: true,
   },
-  adaAccseeible: {
+  adaAccessible: {
     type: Boolean,
     required: true,
   },

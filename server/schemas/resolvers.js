@@ -2,7 +2,7 @@ const {
   AuthenticationError,
   UserInputError,
 } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Restroom } = require("../models");
 const { signToken } = require("../util/auth");
 const { dateScalar } = require("./customScalars");
 
@@ -16,6 +16,24 @@ const resolvers = {
         throw new AuthenticationError("Must be logged in.");
       }
       return User.findOne({ email: ctx.user.email });
+    },
+
+    nearbyRestrooms: async (parent, args, context) => {
+      try {
+        return Restroom.find({
+          location: {
+            $near: {
+              $maxDistance: 3000,
+              $geometry: {
+                type: "Point",
+                coordinates: [args.lon, args.lat], // takes an array [lon, lat], pass in the userLocation variable on client side
+              },
+            },
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   Mutation: {
@@ -46,6 +64,35 @@ const resolvers = {
       user.lastLogin = Date.now();
       await user.save();
       return { token, user };
+    },
+    createRestroom: async (parent, args, context) => {
+      try {
+        const restroom = await Restroom.create({
+          ...args,
+          location: { type: "Point", coordinates: [args.lon, args.lat] },
+        });
+
+        return restroom;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    addReview: async (parent, { restroomId, reviewText, rating }, context) => {
+      if (context.user) {
+        return Restroom.findOneAndUpdate(
+          { _id: restroomId },
+          {
+            $addToSet: {
+              reviews: { reviewText, rating, username: context.user.username, userId: context.user._id },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };
