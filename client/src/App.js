@@ -2,6 +2,7 @@ import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar2 from "./components/Navbar2";
 import RequireAuth from "./components/RequireAuth";
+import BMLogo from "./components/logo";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 // import ProtectedPageExample from "./pages/ProtectedPageExample";
@@ -20,6 +21,7 @@ function App() {
       <Router>
         <AuthProvider>
           <Navbar2 />
+          <BMLogo />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/restroomsNearYou" element={<RestroomsNearYou />} />
