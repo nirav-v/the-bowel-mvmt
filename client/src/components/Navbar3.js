@@ -14,15 +14,20 @@ import BMLogo from "./logo";
 const pages = ["Login", "Signup"];
 
 const Navbar3 = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  // const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  const [value, setValue] = React.useState(null);
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
+  // const handleOpenNavMenu = (event) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
+
+  // const handleCloseNavMenu = () => {
+  //   setAnchorElNav(null);
+  // };
 
   return (
     <AppBar position="static" sx={{ bgcolor: "background.paper" }}>
@@ -34,14 +39,16 @@ const Navbar3 = () => {
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleOpenNavMenu}
+              // onClick={handleOpenNavMenu}
+              onChange={handleChange}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
-              anchorEl={anchorElNav}
+              // anchorEl={anchorElNav}
+              value={value}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "left",
@@ -51,14 +58,17 @@ const Navbar3 = () => {
                 vertical: "top",
                 horizontal: "left",
               }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              // open={Boolean(anchorElNav)}
+              open={Boolean(value)}
+              // onClose={handleCloseNavMenu}
+              onChange={handleChange}
               sx={{
                 display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                // <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onChange={handleChange}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -70,7 +80,8 @@ const Navbar3 = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                // onClick={handleCloseNavMenu}
+                onChange={handleChange}
                 sx={{ my: 2, color: "black", display: "block" }}
               >
                 {page}
