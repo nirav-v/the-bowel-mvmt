@@ -34,9 +34,9 @@ const resolvers = {
         console.log(error);
       }
     },
-    singleRestroom: async (parent, args, context) => {
+    singleRestroom: async (parent, {restroomId}, context) => {
       try {
-        return Restroom.find({ _id: Restroom._id });
+        return Restroom.findOne({ _id: restroomId});
       } catch (error) {
         console.log(error);
       }

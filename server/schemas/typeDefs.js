@@ -10,7 +10,7 @@ const typeDefs = gql`
 
     nearbyRestrooms(lon: Float, lat: Float): [Restroom]!
 
-    singleRestroom(_id: ID!): Restroom
+    singleRestroom(restroomId: ID!): Restroom
   }
 
   type Mutation {
