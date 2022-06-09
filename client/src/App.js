@@ -23,7 +23,7 @@ function App() {
       <Router>
         <AuthProvider>
           <Navbar2 />
-          <BMLogo />
+          {/* <BMLogo /> */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/restroomsNearYou" element={<RestroomsNearYou />} />
