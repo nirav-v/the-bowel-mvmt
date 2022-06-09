@@ -102,6 +102,7 @@ export default function SignUp2() {
                     value={formState.username.value}
                     onChange={handleInputChange}
                     disabled={loading}
+                    name="username"
                   />
                 </Grid>
                 <Grid xs={12} item>
@@ -119,6 +120,7 @@ export default function SignUp2() {
                     fullWidth
                     required
                     type="email"
+                    name="email"
                     disabled={loading}
                     value={formState.email.value}
                     onChange={handleInputChange}
@@ -139,6 +141,7 @@ export default function SignUp2() {
                     fullWidth
                     required
                     type="password"
+                    name="password"
                     disabled={loading}
                     value={formState.password.value}
                     onChange={handleInputChange}
