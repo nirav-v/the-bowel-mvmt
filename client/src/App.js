@@ -6,7 +6,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 // import ProtectedPageExample from "./pages/ProtectedPageExample";
 import SingleRestroom from "./pages/SingleRestroom";
-import SignUp from "./pages/SignUp";
+// import SignUp from "./pages/SignUp";
+import SignUp2 from "./pages/SignUp2";
 import RestroomsNearYou from "./pages/RestroomsNearYou";
 import Userpage from "./pages/Userpage";
 import AddRestroom from "./pages/AddRestroom";
@@ -24,7 +25,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/restroomsNearYou" element={<RestroomsNearYou />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
+            {/* <Route path="/signup" element={<SignUp />} /> */}
+            <Route path="/signup" element={<SignUp2 />} />
             {/* Use <RequiredAuth> for pages that should only be accessible to a
             user that has logged in.*/}
             {/* <Route
