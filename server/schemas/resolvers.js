@@ -83,7 +83,7 @@ const resolvers = {
           { _id: restroomId },
           {
             $addToSet: {
-              reviews: { reviewText, rating, username: context.user.username },
+              reviews: { reviewText, rating, username: context.user.username, userId: context.user._id },
             },
           },
           {

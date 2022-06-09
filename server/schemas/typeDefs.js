@@ -60,7 +60,7 @@ type Location {
     rating: Float!
     createdAt: String
     username: String!
-    userId: String!
+    userId: ID
   }
 `;
 
