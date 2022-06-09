@@ -77,8 +77,24 @@ const resolvers = {
         console.log(error);
       }
     },
+    addReview: async (parent, { restroomId, reviewText, rating }, context) => {
+      if (context.user) {
+        return Restroom.findOneAndUpdate(
+          { _id: restroomId },
+          {
+            $addToSet: {
+              reviews: { reviewText, rating, username: context.user.username, userId: context.user._id },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 
 module.exports = resolvers;
-
