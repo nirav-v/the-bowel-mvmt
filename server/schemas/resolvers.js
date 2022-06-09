@@ -26,7 +26,7 @@ const resolvers = {
               $maxDistance: 3000,
               $geometry: {
                 type: "Point",
-                coordinates: [args.lon, args.lat], // takes an array [lon, lat], pass in the userLocation variable
+                coordinates: [args.lon, args.lat], // takes an array [lon, lat], pass in the userLocation variable on client side
               },
             },
           },
@@ -67,7 +67,6 @@ const resolvers = {
     },
     createRestroom: async (parent, args, context) => {
       try {
-        console.log(args);
         const restroom = await Restroom.create({
           ...args,
           location: { type: "Point", coordinates: [args.lon, args.lat] },
