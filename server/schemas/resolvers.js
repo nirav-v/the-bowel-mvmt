@@ -2,7 +2,7 @@ const {
   AuthenticationError,
   UserInputError,
 } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Restroom } = require("../models");
 const { signToken } = require("../util/auth");
 const { dateScalar } = require("./customScalars");
 
@@ -15,9 +15,34 @@ const resolvers = {
       if (!ctx.user) {
         throw new AuthenticationError("Must be logged in.");
       }
-      return User.findOne({ email: ctx.user.email });
+      return User.findOne({ email: ctx.user.email }).populate('savedRestrooms');
+    },
+    nearbyRestrooms: async (parent, args, context) => {
+      try {
+        return Restroom.find({
+          location: {
+            $near: {
+              $maxDistance: 3000,
+              $geometry: {
+                type: "Point",
+                coordinates: [args.lon, args.lat], // takes an array [lon, lat], pass in the userLocation variable on client side
+              },
+            },
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    singleRestroom: async (parent, {restroomId}, context) => {
+      try {
+        return Restroom.findOne({ _id: restroomId});
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
+
   Mutation: {
     createUser: async (parent, args) => {
       try {
@@ -46,6 +71,77 @@ const resolvers = {
       user.lastLogin = Date.now();
       await user.save();
       return { token, user };
+    },
+    createRestroom: async (parent, args, context) => {
+      try {
+        const restroom = await Restroom.create({
+          ...args,
+          location: { type: "Point", coordinates: [args.lon, args.lat] },
+        });
+
+        return restroom;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    addReview: async (parent, { restroomId, reviewText, rating }, context) => {
+      if (context.user) {
+        return Restroom.findOneAndUpdate(
+          { _id: restroomId },
+          {
+            $addToSet: {
+              reviews: {
+                reviewText,
+                rating,
+                username: context.user.username,
+                userId: context.user._id,
+              },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    saveRestroom: async (
+      parent,
+      {
+        _id,
+        areaDescription,
+        location,
+        changingStation,
+        keyRequired,
+        adaAccessible,
+        reviews,
+      },
+      context
+    ) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $addToSet: {
+              savedRestrooms: {
+                _id,
+                areaDescription,
+                location,
+                changingStation,
+                keyRequired,
+                adaAccessible,
+                reviews,
+              },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        ).populate('savedRestrooms');
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };
