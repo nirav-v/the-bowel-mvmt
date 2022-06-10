@@ -1,0 +1,92 @@
+[
+  {
+    "areaDescription": "La Mesa Chick-fil-A bathroom",
+    "location": {
+      "type": "Point",
+      "coordinates": [-117.02175473899462, 32.77729400591533]
+    },
+    "changingStation": true,
+    "keyRequired": false,
+    "adaAccessible": true,
+    "reviews": [
+      {
+        "reviewText": "pretty clean, smelled good",
+        "rating": 4,
+        "username": "andy",
+        "userId": "62a164ad96ebb956465ced3e"
+      },
+      {
+        "reviewText": "the toilets work",
+        "rating": 3.5,
+        "username": "andy",
+        "userId": "62a164ad96ebb956465ced3e"
+      }
+    ]
+  },
+  {
+    "areaDescription": "Dominos in Navajo Plaza bathroom",
+    "location": {
+      "type": "Point",
+      "coordinates": [-117.01347767942572, 32.80295875830552]
+    },
+    "changingStation": true,
+    "keyRequired": true,
+    "adaAccessible": true,
+    "reviews": [
+      {
+        "reviewText": "very rude manager would not let me use it",
+        "rating": 1,
+        "username": "andy",
+        "userId": "62a164ad96ebb956465ced3e"
+      },
+      {
+        "reviewText": "It was ok for my needs but not as clean as I hoped",
+        "rating": 3,
+        "username": "andy",
+        "userId": "62a164ad96ebb956465ced3e"
+      }
+    ]
+  },
+  {
+    "areaDescription": "Albertsons on Fletcher Pkwy Restroom",
+    "location": {
+      "type": "Point",
+      "coordinates": [-117.01305118700688, 32.802331633374614]
+    },
+    "changingStation": true,
+    "keyRequired": false,
+    "adaAccessible": true,
+    "reviews": [
+      {
+        "reviewText": "Pretty clean but small",
+        "rating": 3.5,
+        "username": "andy",
+        "userId": "62a10d722a19dba7c0d5086b"
+      },
+      {
+        "reviewText": "had lots of toilet paper",
+        "rating": 4.5,
+        "username": "andy",
+        "userId": "62a164ad96ebb956465ced3e"
+      }
+    ]
+  },
+  {
+    "areaDescription": "Chuze Fitness Santee Restroom",
+    "location": {
+      "type": "Point",
+      "coordinates": [-116.98676197054745, 32.84314867994577]
+    },
+    "changingStation": true,
+    "keyRequired": false,
+    "adaAccessible": true,
+    "reviews": [
+      {
+        "reviewText": "You have to be a member to use it. The mens restroom is usually only clean in the morning but they do not maintain it throughout the day",
+        "rating": 3,
+        "username": "andy",
+        "userId": "62a10d722a19dba7c0d5086b"
+      }
+    ]
+  }
+]
