@@ -1,11 +1,11 @@
 import React from "react";
+import Button from "@mui/material/Button";
 import rolls from "../images/toilet_paper_rolls.jpeg";
 import Paper from "@mui/material/Paper";
 import CssBaseline from "@mui/material/CssBaseline";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
@@ -13,11 +13,12 @@ import Stack from "@mui/material/Stack";
 
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 
 import ReviewList from "../components/ReviewList";
 
 import { SINGLERESTROOM } from "../util/queries";
+import { SAVE_RESTROOM } from "../util/mutations";
 import { removeClientSetsFromDocument } from "@apollo/client/utilities";
 
 const styles = {
@@ -30,14 +31,29 @@ const styles = {
 };
 
 export default function SingleRestroom() {
+  const [saveRestroom, saveRestroomState] = useMutation(SAVE_RESTROOM);
   const { restroomId } = useParams();
   const { loading, data } = useQuery(SINGLERESTROOM, {
     variables: { restroomId: restroomId },
   });
-  console.log(data);
+
   const restroom = data?.singleRestroom || {};
+
+  const handleSaveRestroom = async (restroomId) => {
+    try {
+      await saveRestroom({
+        variables: {
+          id: restroomId,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   const [value, setValue] = React.useState(0);
-  console.log(restroom);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -60,6 +76,7 @@ export default function SingleRestroom() {
             opacity: 0.9,
           }}
         >
+ 
           <CardContent>
             <Typography gutterBottom variant="h5">
               Put toilet name here
@@ -81,6 +98,9 @@ export default function SingleRestroom() {
                     }}
                   >
                     {restroom.areaDescription}
+                              <Button onClick={() => handleSaveRestroom(restroom._id)}>
+            {"Save Restroom"}
+          </Button>
                   </blockquote>
                 </div>
 
