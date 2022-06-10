@@ -13,7 +13,8 @@ export default function SingleRestroom() {
   const { loading, data } = useQuery(SINGLERESTROOM, {
     variables: { restroomId: restroomId },
   });
-  const restroom = data?.restroom || {};
+  console.log(data)
+  const restroom = data?.singleRestroom || {};
 
   if (loading) {
     return <div>Loading...</div>;

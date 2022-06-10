@@ -66,7 +66,7 @@ export default function NearbyRestroomList() {
       {restrooms &&
         restrooms.map((restroom) => (
           <div key={restroom._id}>
-            <Link to={'/singleRestroom'}>
+            <Link to={`/singleRestroom/${restroom._id}`}>
             <h3>{restroom.areaDescription}</h3>
             </Link>
             <p>
