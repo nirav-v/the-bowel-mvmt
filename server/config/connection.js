@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/bowelMvmtDB', {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
