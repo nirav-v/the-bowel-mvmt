@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import blueToilets from "../images/blue_toilets.jpeg";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import CssBaseline from "@mui/material/CssBaseline";
 
 const styles = {
   formControl: {
@@ -40,6 +41,7 @@ export default function Home() {
   const { isLoggedIn, user } = useAuth();
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
+      <CssBaseline />
       <Grid
         container
         justifyContent="center"
