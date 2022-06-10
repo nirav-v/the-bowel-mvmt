@@ -1,94 +1,80 @@
-import {useState} from 'react';
-import { Rating } from '@mui/material';
-import AccessibleIcon from '@mui/icons-material/Accessible';
-import BabyChangingStationIcon from '@mui/icons-material/BabyChangingStation';
-import KeyIcon from '@mui/icons-material/Key';
+import { useState, useEffect } from "react";
+import { useQuery, useLazyQuery } from "@apollo/client";
+import { Rating } from "@mui/material";
+import AccessibleIcon from "@mui/icons-material/Accessible";
+import BabyChangingStationIcon from "@mui/icons-material/BabyChangingStation";
+import KeyIcon from "@mui/icons-material/Key";
 
-
+import { NEARBY_RESTROOMS } from "../util/queries";
 
 export default function NearbyRestroomList() {
+  // we declare out restrooms state variable with an initial state of false which will later be set to our array of nearby restrooms
+  const [restrooms, setRestroomState] = useState(false);
 
-const [userLon, setUserLon] = useState(0)
-const [userLat, setUserLat] = useState(0)
+  // we have getUserLocation returning a promise that we can access the coordinates from
+  const getUserLocation = () =>
+    new Promise((resolve, reject) => {
+      if ("geolocation" in navigator) {
+        console.log("geolocation is available ");
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const browserLon = await position.coords.longitude;
+            const browserLat = await position.coords.latitude;
+            const coords = { lat: browserLat, lon: browserLon };
+            resolve(coords);
+          },
+          (error) => {
+            console.log(error);
+            reject(error);
+          }
+        );
+      } else {
+        console.log("geolocation IS NOT available");
+        reject();
+      }
+    });
 
-  const getUserLocation = () => {
-        if ("geolocation" in navigator) {
-          console.log("geolocation is available ");
-          navigator.geolocation.getCurrentPosition((position) => {
-            const userLocation = [
-              position.coords.longitude,
-              position.coords.latitude,
-            ];
-            console.log(userLocation);
+  // we only want to set our restrooms state after the NEARBY_RESTROOMS query has finished loading the data
+  const [getNearbyRestrooms, { loading, error, data }] = useLazyQuery(
+    NEARBY_RESTROOMS,
+    {
+      onCompleted: () => setRestroomState(data.nearbyRestrooms),
+    }
+  );
 
-            const userLon = position.coords.longitude;
-            console.log("userLon: ", userLon);
-            setUserLon(userLon)
-            const userLat = position.coords.latitude;
-            console.log("userLat: ", userLat);
-            setUserLat(userLat)
-          });
-        } else {
-          console.log("geolocation IS NOT available");
-        }
-      };
+  // useEffect prevents getUserLocation() from recursively running after each re-render of NearbyRestroomList component
+  // we call the getNearbyRestrooms lazy query which returns an object with a nearbyRestrooms property containing our array of nearby restrooms
+  useEffect(() => {
+    getUserLocation().then((res) => {
+      getNearbyRestrooms({
+        variables: {
+          lat: res.lat,
+          lon: res.lon,
+        },
+      });
+    });
+  }, []);
 
-      getUserLocation();
-
-
-    // temporary made up restroom array we can pass from backend in home.js later
-const restrooms = [
-{
-  areaDescription: "Dominos Bathroom on Lake Murray Blvd",
-  location: {
-    type: "Point",
-    coordinates: [
-      -117.01294123839926,
-      32.80313911814198
-    ]
-  },
-  changingStation: true,
-  keyRequired: true,
-  adaAccessible: false,
-  reviews: [],
-},
-{
-  areaDescription: "in n out restroom",
-  location: {
-    type: "Point",
-    coordinates: [
-      -116.99426807954728,
-      32.84074248221512
-    ]
-  },
-  changingStation: false,
-  keyRequired: true,
-  adaAccessible: true,
-  reviews: [],
-
-}
-]
+  // show loading message until our array of restrooms is ready to render
+  if (!restrooms.length){
+    return <h2>LOADING NEARBY RESTROOMS...</h2>;
+  }
 
   return (
     <div>
- {restrooms &&
+      {restrooms &&
         restrooms.map((restroom) => (
           <div key={restroom._id}>
-           <h3 >{restroom.areaDescription}</h3> 
-        <p>Rating: <Rating name="half-rating" defaultValue={4} precision={0.5} /> 
-     {restroom.adaAccessible ? <AccessibleIcon/> : null}
-     {restroom.changingStation ?  <BabyChangingStationIcon/> : null}
-     {restroom.keyRequired ?  < KeyIcon/> : null}
-         </p>
+            <h3>{restroom.areaDescription}</h3>
+            <p>
+              Rating:{" "}
+              <Rating name="half-rating" defaultValue={4} precision={0.5} />
+              {restroom.adaAccessible ? <AccessibleIcon /> : null}
+              {restroom.changingStation ? <BabyChangingStationIcon /> : null}
+              {restroom.keyRequired ? <KeyIcon /> : null}
+            </p>
           </div>
         ))}
-</div>
-   
-  )
+    </div>
+  );
 }
-
-
-
-
-
-
