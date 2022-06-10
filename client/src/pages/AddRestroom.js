@@ -12,6 +12,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { useMutation } from '@apollo/client';
+import { CREATE_RESTROOM } from '../util/mutations';
 
 const styles = {
   paperContainer: {
@@ -23,37 +25,57 @@ const styles = {
 };
 
 const initialFormState = {
-  // coordinates: "",
-  // location: "",
-  // keyCode: "",
-  // changingStation: "",
-  // aDA: "",
+  latitude: "",
+  longitude: "",
+  location: "",
 };
 
 export default function AddRestroom() {
   
-  // need auth
-  // const { isLoggedIn, login, loading, error } = useAuth();
-  // const { loading, error } = useAuth();
-  // const [formState, setFormState] = useState(initialFormState);
+  const { loading, error } = useAuth();
+  const [formState, setFormState] = useState(initialFormState);
+  const [checkedOne, setCheckedOne] = useState(false);
+  const [checkedTwo, setCheckedTwo] = useState(false);
+  const [checkedThree, setCheckedThree] = useState(false);
 
-  // useEffect(() => {
-  //   if (error) {
-  //     // TODO: replace window alert with custom alert
-  //     alert(error);
-  //   }
-  // }, [error]);
+  const [createRestroom, { data, loading: loadingRestroom, error: errorRestroom }] = useMutation(CREATE_RESTROOM);
 
-  // const handleInputChange = (evt) => {
-  //   const { name, value } = evt.target;
-  //   setFormState((prevState) => ({ ...prevState, [name]: value }));
-  // };
+  useEffect(() => {
+    if (error) {
+      // TODO: replace window alert with custom alert
+      alert(error);
+    }
+  }, [error]);
 
-  // const handleSubmit = async (evt) => {
-  //   evt.preventDefault();
-  //   // login(formState);
-  // };
+  const handleInputChange = (evt) => {
+    const { name, value } = evt.target;
+    setFormState((prevState) => ({ ...prevState, [name]: value }));
+  };
 
+  const handleChangeOne = () => {
+    setCheckedOne(!checkedOne);
+  };
+
+  const handleChangeTwo = () => {
+    setCheckedTwo(!checkedTwo);
+  };
+
+  const handleChangeThree = () => {
+    setCheckedThree(!checkedThree);
+  };
+
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    console.log(formState);
+
+    try {
+      createRestroom({variables: {areaDescription: formState.location, changingStation: checkedTwo, keyRequired: checkedOne, adaAccessible: checkedThree, lat: parseFloat(formState.latitude), lon: parseFloat(formState.longitude)}})
+    }
+    catch(err) {
+      console.log(err)
+    }
+
+  };
 
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
@@ -73,8 +95,7 @@ export default function AddRestroom() {
             <Typography gutterBottom variant="h5">
               Add A Restroom
             </Typography>
-            {/* <form onSubmit={handleSubmit}> */}
-            <form >
+            <form onSubmit={handleSubmit}>
               <Grid container spacing={2}>
                 <Grid xs={12} item>
                   <Typography
@@ -86,14 +107,29 @@ export default function AddRestroom() {
                     Coordinates
                   </Typography>
                   <TextField
-                    // label="Coordinates"
-                    placeholder="Insert coordinates"
+                    label="Latitude"
+                    placeholder="Insert latitude"
                     fullWidth
                     required
-                    name="coordinates"
-                    // disabled={loading}
-                    // value={formState.coordinates.value}
-                    // onChange={handleInputChange}
+                    name="latitude"
+                    disabled={loading}
+                    value={formState.latitude.value}
+                    onChange={handleInputChange}
+                    // type="number"
+                    inputProps={{ inputMode: 'numeric', pattern: '[0-9.]*' }}
+                    id="margin-normal" margin="normal"
+                  />
+                  <TextField
+                    label="Longitude"
+                    placeholder="Insert longitude"
+                    fullWidth
+                    required
+                    name="longitude"
+                    disabled={loading}
+                    value={formState.longitude.value}
+                    onChange={handleInputChange}
+                    // type="number"
+                    inputProps={{ inputMode: 'numeric', pattern: '[0-9.]*' }}
                   />
                 </Grid>
                 <Grid xs={12} item>
@@ -107,46 +143,40 @@ export default function AddRestroom() {
                   </Typography>
                   <TextField
                     // label="Location"
-                    placeholder="Enter store, gas station, etc."
+                    placeholder="Enter area description, like store, gas station, etc."
                     fullWidth
                     required
                     name="location"
-                    // disabled={loading}
-                    // value={formState.location.value}
-                    // onChange={handleInputChange}
+                    disabled={loading}
+                    value={formState.location.value}
+                    onChange={handleInputChange}
                   />
                 </Grid>
                 <Grid xs={12} item>
                 <FormControlLabel
-                  value="Key / code required"
+                  value={checkedOne}
                   control={<Checkbox />}
                   label="Key / code required"
                   labelPlacement="start"
-                  
-                  // onChange={handleChange}
-                  // checked={checked}
+                  onChange={handleChangeOne}
                 />
                 </Grid>
                 <Grid xs={12} item>
                 <FormControlLabel
-                  value="Changing station"
+                  value={checkedTwo}
                   control={<Checkbox />}
                   label="Changing station"
                   labelPlacement="start"
-                  
-                  // onChange={handleChange}
-                  // checked={checked}
+                  onChange={handleChangeTwo}
                 />
                 </Grid>
                 <Grid xs={12} item>
                 <FormControlLabel
-                  value="ADA"
+                  value={checkedThree}
                   control={<Checkbox />}
                   label="ADA"
                   labelPlacement="start"
-                  
-                  // onChange={handleChange}
-                  // checked={checked}
+                  onChange={handleChangeThree}
                 />
                 </Grid>
                 <Grid xs={12} item>
@@ -155,10 +185,10 @@ export default function AddRestroom() {
                     variant="contained"
                     color="primary"
                     type="submit"
-                    // disabled={loading}
+                    disabled={loading}
                   >
-                    Submit
-                    {/* {loading ? "Loading..." : "Submit"} */}
+                    {/* Submit */}
+                    {loading ? "Loading..." : "Submit"}
                   </Button>
                 </Grid>
               </Grid>

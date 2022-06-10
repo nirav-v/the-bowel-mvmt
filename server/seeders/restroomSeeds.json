@@ -88,5 +88,23 @@
         "userId": "62a10d722a19dba7c0d5086b"
       }
     ]
+  },
+  {
+    "areaDescription": "Neighbor-House Restroom",
+    "location": {
+      "type": "Point",
+      "coordinates": [33.87696652735619, -117.98426695690975]
+    },
+    "changingStation": false,
+    "keyRequired": true,
+    "adaAccessible": false,
+    "reviews": [
+      {
+        "reviewText": "Nice house and really nice backyard. Their bathroom is clean and smells good if you light the candle. The only thing I'm not happy about is their toilet, they do not have the butt warmer electric toilet seat.",
+        "rating": 4,
+        "username": "kevin",
+        "userId": "62a38490936dc4a82b2ee62a"
+      }
+    ]
   }
 ]

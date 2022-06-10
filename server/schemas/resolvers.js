@@ -15,14 +15,14 @@ const resolvers = {
       if (!ctx.user) {
         throw new AuthenticationError("Must be logged in.");
       }
-      return User.findOne({ email: ctx.user.email }).populate('savedRestrooms');
+      return User.findOne({ email: ctx.user.email }).populate("savedRestrooms");
     },
     nearbyRestrooms: async (parent, args, context) => {
       try {
         return Restroom.find({
           location: {
             $near: {
-              $maxDistance: 3000,
+              $maxDistance: 100000,
               $geometry: {
                 type: "Point",
                 coordinates: [args.lon, args.lat], // takes an array [lon, lat], pass in the userLocation variable on client side
@@ -34,9 +34,9 @@ const resolvers = {
         console.log(error);
       }
     },
-    singleRestroom: async (parent, {restroomId}, context) => {
+    singleRestroom: async (parent, { restroomId }, context) => {
       try {
-        return Restroom.findOne({ _id: restroomId});
+        return Restroom.findOne({ _id: restroomId });
       } catch (error) {
         console.log(error);
       }
@@ -73,19 +73,19 @@ const resolvers = {
       return { token, user };
     },
     createRestroom: async (parent, args, context) => {
-     if (context.user){
-      try {
-        const restroom = await Restroom.create({
-          ...args,
-          location: { type: "Point", coordinates: [args.lon, args.lat] },
-        });
+      if (context.user) {
+        try {
+          const restroom = await Restroom.create({
+            ...args,
+            location: { type: "Point", coordinates: [args.lon, args.lat] },
+          });
 
-        return restroom;
-      } catch (error) {
-        console.log(error);
+          return restroom;
+        } catch (error) {
+          console.log(error);
+        }
       }
-     }
-     throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError("You need to be logged in!");
     },
     addReview: async (parent, { restroomId, reviewText, rating }, context) => {
       if (context.user) {
@@ -142,7 +142,7 @@ const resolvers = {
             new: true,
             runValidators: true,
           }
-        ).populate('savedRestrooms');
+        ).populate("savedRestrooms");
       }
       throw new AuthenticationError("You need to be logged in!");
     },
