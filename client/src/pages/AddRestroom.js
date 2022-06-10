@@ -69,7 +69,7 @@ export default function AddRestroom() {
     console.log(formState);
 
     try {
-      createRestroom({variables: {areaDescription: formState.location, changingStation: checkedTwo, keyRequired: checkedOne, adaAccessible: checkedThree, lat: formState.latitude, lon: formState.longitude}})
+      createRestroom({variables: {areaDescription: formState.location, changingStation: checkedTwo, keyRequired: checkedOne, adaAccessible: checkedThree, lat: parseFloat(formState.latitude), lon: parseFloat(formState.longitude)}})
     }
     catch(err) {
       console.log(err)
