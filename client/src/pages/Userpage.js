@@ -1,3 +1,4 @@
+import { useAuth } from "../util/auth";
 import rolls from "../images/toilet_paper_rolls.jpeg";
 import Paper from "@mui/material/Paper";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -20,6 +21,7 @@ const styles = {
 };
 
 export default function Userpage() {
+  const { isLoggedIn, user } = useAuth();
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
       <CssBaseline />
@@ -30,6 +32,7 @@ export default function Userpage() {
         direction="column"
         style={{ minHeight: "100vh" }}
       >
+        <h1>Welcome {isLoggedIn ? user.username : "Guest"}!</h1>
         <Stack spacing={13} direction="row" sx={{ my: 5, mx: 3 }}>
           <Button
             variant="contained"
