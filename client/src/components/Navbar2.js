@@ -9,12 +9,6 @@ import BMLogo from "./logo";
 // import { NavLink } from "react-router-dom";
 import { useAuth } from "../util/auth";
 
-const styles = {
-  logoStyle: {
-    justifyContent: "left",
-  },
-};
-
 export default function Navbar2() {
   const { isLoggedIn, logout } = useAuth();
   return (
@@ -71,26 +65,3 @@ export default function Navbar2() {
     </Box>
   );
 }
-
-// ----- for tab style ----------
-// import * as React from "react";
-// import Box from "@mui/material/Box";
-// import Tabs from "@mui/material/Tabs";
-// import Tab from "@mui/material/Tab";
-
-// export default function CenteredTabs() {
-//   const [value, setValue] = React.useState(0);
-
-//   const handleChange = (event, newValue) => {
-//     setValue(newValue);
-//   };
-
-//   return (
-//     <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-//       <Tabs value={value} onChange={handleChange} centered>
-//         <Tab label="Signup" href="/signup" />
-//         <Tab label="Login" href="/login" />
-//       </Tabs>
-//     </Box>
-//   );
-// }
