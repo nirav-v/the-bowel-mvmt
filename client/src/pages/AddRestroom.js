@@ -75,6 +75,15 @@ export default function AddRestroom() {
       console.log(err)
     }
 
+    setFormState ({
+      latitude: "",
+      longitude: "",
+      location: "",
+    });
+    // setCheckedOne( false );
+    // setCheckedTwo( false );
+    // setCheckedThree( false );
+
   };
 
   return (
