@@ -55,6 +55,11 @@ export default function NearbyRestroomList() {
     });
   }, []);
 
+  // show loading message until our array of restrooms is ready to render
+  if (!restrooms.length){
+    return <h2>LOADING NEARBY RESTROOMS...</h2>;
+  }
+
   return (
     <div>
       {restrooms &&
