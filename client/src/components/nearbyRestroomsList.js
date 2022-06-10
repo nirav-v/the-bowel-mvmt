@@ -8,28 +8,10 @@ import KeyIcon from "@mui/icons-material/Key";
 import { NEARBY_RESTROOMS } from "../util/queries";
 
 export default function NearbyRestroomList() {
-  const [userLon, setUserLon] = useState();
-  const [userLat, setUserLat] = useState();
+  // we declare out restrooms state variable with an initial state of false which will later be set to our array of nearby restrooms
   const [restrooms, setRestroomState] = useState(false);
 
-  // function to get browsers coordinates
-  // const getUserLocation = async () => {
-  //   if ("geolocation" in navigator) {
-  //     console.log("geolocation is available ");
-  //     navigator.geolocation.getCurrentPosition( async (position) => {
-  //       const browserLon = await position.coords.longitude;
-  //       console.log("browserLon: ", browserLon);
-  //       setUserLon(browserLon);
-  //       const browserLat = await position.coords.latitude;
-  //       console.log("browserLat: ", browserLat);
-  //       setUserLat(browserLat);
-  //       return
-  //     });
-  //   } else {
-  //     console.log("geolocation IS NOT available");
-  //   }
-  // };
-
+  // we have getUserLocation returning a promise that we can access the coordinates from
   const getUserLocation = () =>
     new Promise((resolve, reject) => {
       if ("geolocation" in navigator) {
@@ -52,15 +34,18 @@ export default function NearbyRestroomList() {
       }
     });
 
-  const [getNearbyRestrooms, { loading, error, data }] =
-    useLazyQuery(NEARBY_RESTROOMS, {
-      onCompleted: () => setRestroomState(data.nearbyRestrooms)
-    });
+  // we only want to set our restrooms state after the NEARBY_RESTROOMS query has finished loading the data
+  const [getNearbyRestrooms, { loading, error, data }] = useLazyQuery(
+    NEARBY_RESTROOMS,
+    {
+      onCompleted: () => setRestroomState(data.nearbyRestrooms),
+    }
+  );
 
-  // prevent getUserLocation() from recursively running after each re-render of component
+  // useEffect prevents getUserLocation() from recursively running after each re-render of NearbyRestroomList component
+  // we call the getNearbyRestrooms lazy query which returns an object with a nearbyRestrooms property containing our array of nearby restrooms
   useEffect(() => {
     getUserLocation().then((res) => {
-      console.log(res);
       getNearbyRestrooms({
         variables: {
           lat: res.lat,
@@ -69,50 +54,6 @@ export default function NearbyRestroomList() {
       });
     });
   }, []);
-
-  // if (data) {
-  //   const restroom = data.nearbyRestrooms;
-  //   console.log(restroom);
-  //   setRestroomState(restroom);
-  // }
-
-  console.log(loading);
-  console.log(data);
-  // if(data){
-  // //console.log(data)
-  // const d = data.nearbyRestrooms
-  // console.log(d)
-  // }
-
-  // if (loading){
-  //   console.log('loading')
-  // }
-
-  // temporary made up restroom array we can pass from backend in home.js later
-  // const restrooms = [
-  //   {
-  //     areaDescription: "Dominos Bathroom on Lake Murray Blvd",
-  //     location: {
-  //       type: "Point",
-  //       coordinates: [-117.01294123839926, 32.80313911814198],
-  //     },
-  //     changingStation: true,
-  //     keyRequired: true,
-  //     adaAccessible: false,
-  //     reviews: [],
-  //   },
-  //   {
-  //     areaDescription: "in n out restroom",
-  //     location: {
-  //       type: "Point",
-  //       coordinates: [-116.99426807954728, 32.84074248221512],
-  //     },
-  //     changingStation: false,
-  //     keyRequired: true,
-  //     adaAccessible: true,
-  //     reviews: [],
-  //   },
-  // ];
 
   return (
     <div>
@@ -132,29 +73,3 @@ export default function NearbyRestroomList() {
     </div>
   );
 }
-
-// temporary made up restroom array we can pass from backend in home.js later
-// const restrooms = [
-//   {
-//     areaDescription: "Dominos Bathroom on Lake Murray Blvd",
-//     location: {
-//       type: "Point",
-//       coordinates: [-117.01294123839926, 32.80313911814198],
-//     },
-//     changingStation: true,
-//     keyRequired: true,
-//     adaAccessible: false,
-//     reviews: [],
-//   },
-//   {
-//     areaDescription: "in n out restroom",
-//     location: {
-//       type: "Point",
-//       coordinates: [-116.99426807954728, 32.84074248221512],
-//     },
-//     changingStation: false,
-//     keyRequired: true,
-//     adaAccessible: true,
-//     reviews: [],
-//   },
-// ];
