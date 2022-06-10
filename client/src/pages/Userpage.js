@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import NearbyRestroomList from "../components/nearbyRestroomsList";
 
 const styles = {
   paperContainer: {
@@ -64,14 +65,36 @@ export default function Userpage() {
               opacity: 0.9,
             }}
           >
-            <CardContent>
-              <Typography gutterBottom variant="h5">
-                Click on a restroom to view amenities and read reviews
-              </Typography>
-              {/* ---- put restroom list component here ----- */}
-            </CardContent>
-          </Card>
-        </div>
+
+            <FavoriteIcon sx={{ mx: 1 }} />
+            View Saved Restroom
+          </Button>
+          <Button
+            variant="contained"
+            size="large"
+            sx={{ textTransform: "capitalize" }}
+            href="/addRestroom"
+          >
+            <AddCircleIcon sx={{ mx: 1 }} />
+            Add Restrooms
+          </Button>
+        </Stack>
+        <Card
+          style={{
+            maxWidth: 650,
+            padding: "20px 5px",
+            borderRadius: "16px",
+            opacity: 0.9,
+          }}
+        >
+          <CardContent>
+            <Typography gutterBottom variant="h5">
+              Click on a restroom to view amenities and read reviews
+            </Typography>
+            {/* ---- put restroom list component here ----- */}
+            <NearbyRestroomList/>
+          </CardContent>
+        </Card>
       </Grid>
     </Paper>
   );
