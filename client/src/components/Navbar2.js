@@ -30,7 +30,7 @@ export default function Navbar2() {
                   size="large"
                   href="/userpage"
                 >
-                  Home
+                  User Home
                 </Button>
                 <Button
                   sx={{ my: 2, color: "black", display: "block" }}
@@ -43,6 +43,13 @@ export default function Navbar2() {
               </>
             ) : (
               <>
+                <Button
+                  sx={{ my: 2, color: "black", display: "block" }}
+                  size="large"
+                  href="/"
+                >
+                  Home
+                </Button>
                 <Button
                   sx={{ my: 2, color: "black", display: "block" }}
                   size="large"
