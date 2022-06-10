@@ -1,22 +1,36 @@
 import React from "react";
-
+import Button from "@mui/material/Button";
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 
 import ReviewList from "../components/ReviewList";
 
 import { SINGLERESTROOM } from "../util/queries";
+import { SAVE_RESTROOM } from "../util/mutations";
 import { removeClientSetsFromDocument } from "@apollo/client/utilities";
 
 export default function SingleRestroom() {
+  const [saveRestroom, saveRestroomState] = useMutation(SAVE_RESTROOM);
   const { restroomId } = useParams();
   const { loading, data } = useQuery(SINGLERESTROOM, {
     variables: { restroomId: restroomId },
   });
-  console.log(data)
+
   const restroom = data?.singleRestroom || {};
-console.log(restroom)
+
+  const handleSaveRestroom = async (restroomId) => {
+    try {
+      await saveRestroom({
+        variables: {
+          id: restroomId,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -36,6 +50,9 @@ console.log(restroom)
           }}
         >
           {restroom.areaDescription}
+          <Button onClick={() => handleSaveRestroom(restroom._id)}>
+            {"Save Restroom"}
+          </Button>
         </blockquote>
       </div>
 
