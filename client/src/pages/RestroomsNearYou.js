@@ -1,4 +1,5 @@
 import React from "react";
+import NearbyRestroomList from "../components/nearbyRestroomsList";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import Card from "@mui/material/Card";
@@ -70,18 +71,7 @@ export default function RestroomsNearYou() {
           <CardContent>
             <div style={styles.divStyle}>
               {/* put components here */}
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-              ac consectetur ac, vestibulum at eros. Praesent commodo cursus
-              magna, vel scelerisque nisl consectetur et. Cras mattis
-              consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
-              facilisis in, egestas eget quam. Morbi leo risus, porta ac
-              consectetur ac, vestibulum at eros. Praesent commodo cursus magna,
-              vel scelerisque nisl consectetur et. Cras mattis consectetur purus
-              sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-              egestas eget quam. Morbi leo risus, porta ac consectetur ac,
-              vestibulum at eros. Praesent commodo cursus magna, vel scelerisque
-              nisl consectetur et.
+              <NearbyRestroomList/>
             </div>
           </CardContent>
         </Card>
