@@ -7,14 +7,16 @@ import { useQuery } from "@apollo/client";
 import ReviewList from "../components/ReviewList";
 
 import { SINGLERESTROOM } from "../util/queries";
+import { removeClientSetsFromDocument } from "@apollo/client/utilities";
 
 export default function SingleRestroom() {
   const { restroomId } = useParams();
   const { loading, data } = useQuery(SINGLERESTROOM, {
     variables: { restroomId: restroomId },
   });
-  const restroom = data?.restroom || {};
-
+  console.log(data)
+  const restroom = data?.singleRestroom || {};
+console.log(restroom)
   if (loading) {
     return <div>Loading...</div>;
   }
