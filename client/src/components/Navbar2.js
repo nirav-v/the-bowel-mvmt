@@ -14,29 +14,50 @@ export default function Navbar2() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: "background.paper" }}>
         <Toolbar>
-          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-            {/* Bowel Mvmt */}
-          </Typography>
-
-          <Button
-            sx={{ my: 2, color: "black", display: "block" }}
-            size="large"
-            href="/signup"
-          >
-            {/* <NavLink to="/signup"> */}
-            Signup
-            {/* </NavLink> */}
-          </Button>
-          <Button
-            sx={{ my: 2, color: "black", display: "block" }}
-            size="large"
-            href="/login"
-          >
-            {/* <NavLink to="/login"> */}
-            Login
-            {/* </NavLink> */}
-          </Button>
+          <Typography
+            variant="h4"
+            component="div"
+            sx={{ flexGrow: 1 }}
+          ></Typography>
           <BMLogo sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+
+          {isLoggedIn ? (
+            <>
+              <Button
+                sx={{ my: 2, color: "black", display: "block" }}
+                size="large"
+                href="/userpage"
+              >
+                Home
+              </Button>
+              <Button
+                sx={{ my: 2, color: "black", display: "block" }}
+                size="large"
+                href="/"
+                onClick={logout}
+              >
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                sx={{ my: 2, color: "black", display: "block" }}
+                size="large"
+                href="/signup"
+              >
+                Signup
+              </Button>
+              <Button
+                sx={{ my: 2, color: "black", display: "block" }}
+                size="large"
+                href="/login"
+              >
+                Login
+              </Button>
+            </>
+          )}
+
         </Toolbar>
       </AppBar>
     </Box>
