@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import { useAuth } from "../util/auth";
-import blueToilets from "../images/blue_toilets.jpeg";
+// import blueToilets from "../images/blue_toilets.jpeg";
+import pinkToiletPaper from "../images/pink-paper.jpg";
 import Paper from "@mui/material/Paper";
 import CssBaseline from "@mui/material/CssBaseline";
 import Card from "@mui/material/Card";
@@ -26,7 +27,7 @@ const styles = {
     paddingRight: "0.25em",
   },
   paperContainer: {
-    backgroundImage: `url(${blueToilets})`,
+    backgroundImage: `url(${pinkToiletPaper})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     // height: 1300,
@@ -63,9 +64,8 @@ export default function Login2() {
   if (isLoggedIn) {
     // navigate to page user was redirected from or the user page.
     const from = location.state?.from?.pathname || "/userPage";
-    return <Navigate to={from} replace />
+    return <Navigate to={from} replace />;
   }
-
 
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
@@ -79,7 +79,12 @@ export default function Login2() {
       >
         <Card
           // style={{ maxWidth: 650, padding: "20px 5px", borderRadius: "16px", backgroundColor: 'transparent', }}
-          style={{ maxWidth: 650, padding: "20px 5px", borderRadius: "16px", opacity: .9 }}
+          style={{
+            maxWidth: 650,
+            padding: "20px 5px",
+            borderRadius: "16px",
+            opacity: 0.9,
+          }}
         >
           <CardContent>
             <Typography gutterBottom variant="h5">
