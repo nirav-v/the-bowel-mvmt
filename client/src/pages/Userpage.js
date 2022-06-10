@@ -1,3 +1,4 @@
+import { useAuth } from "../util/auth";
 import rolls from "../images/toilet_paper_rolls.jpeg";
 import Paper from "@mui/material/Paper";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -21,6 +22,7 @@ const styles = {
 };
 
 export default function Userpage() {
+  const { isLoggedIn, user } = useAuth();
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
       <CssBaseline />
@@ -31,13 +33,39 @@ export default function Userpage() {
         direction="column"
         style={{ minHeight: "100vh" }}
       >
-        <Stack spacing={13} direction="row" sx={{ my: 5, mx: 3 }}>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{ textTransform: "capitalize" }}
-            href="/savedRestroom"
+        <div style={{ textAlignVertical: "center", textAlign: "center" }}>
+          {/* TODO: display logged in user's username */}
+          <h1>Welcome {isLoggedIn ? user.username : "Guest"}!</h1>
+          <hr />
+          <Stack spacing={13} direction="row" sx={{ my: 5, mx: 3 }}>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{ textTransform: "capitalize" }}
+              href="/savedRestroom"
+            >
+              <FavoriteIcon sx={{ mx: 1 }} />
+              View Saved Restroom
+            </Button>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{ textTransform: "capitalize" }}
+              href="/addRestroom"
+            >
+              <AddCircleIcon sx={{ mx: 1 }} />
+              Add Restrooms
+            </Button>
+          </Stack>
+          <Card
+            style={{
+              maxWidth: 650,
+              padding: "20px 5px",
+              borderRadius: "16px",
+              opacity: 0.9,
+            }}
           >
+
             <FavoriteIcon sx={{ mx: 1 }} />
             View Saved Restroom
           </Button>
