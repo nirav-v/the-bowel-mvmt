@@ -1,9 +1,8 @@
 import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Navbar2 from "./components/Navbar2";
-import Navbar3 from "./components/Navbar3";
+import Navbar2 from "./components/Navbar2";
+// import Navbar from "./components/Navbar";
 import RequireAuth from "./components/RequireAuth";
-import BMLogo from "./components/logo";
 import Home from "./pages/Home";
 // import Login from "./pages/Login";
 import Login2 from "./pages/Login2";
@@ -23,7 +22,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <AuthProvider>
-          <Navbar3 />
+          <Navbar2 />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/restroomsNearYou" element={<RestroomsNearYou />} />
