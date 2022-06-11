@@ -28,7 +28,7 @@ const ReviewList = ({ reviews = [] }) => {
             //     <p className="card-body">{review.rating + " stars"}</p>
             //   </div>
             // </div>
-            <div key={review._id}>
+            <div key={review.toString()}>
               <Accordion sx={{ bgcolor: "#C1DEAE", my: 1 }}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
