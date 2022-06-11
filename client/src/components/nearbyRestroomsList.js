@@ -77,7 +77,8 @@ const restrooms = data.nearbyRestrooms;
         restrooms.map((restroom) => (
           <div key={restroom._id}>
             <Link to={`/singleRestroom/${restroom._id}`}>
-              <h3>{restroom.areaDescription}</h3>
+              {/* <h3>{restroom.areaDescription}</h3> */}
+              {restroom.areaDescription}
             </Link>
             <p>
               Rating:{" "}
