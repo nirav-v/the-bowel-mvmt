@@ -7,6 +7,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import Rating from '@mui/material/Rating';
 
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
@@ -108,6 +109,7 @@ console.log(avgRating)
               </Typography>
               <Typography gutterBottom >
                 Average Rating: {avgRating + " out of 5 stars"}
+                  <Rating name="read-only" value={avgRating} precision={0.1} readOnly />
               </Typography>
             </div>
             {/* <form onSubmit={handleSubmit}> */}
