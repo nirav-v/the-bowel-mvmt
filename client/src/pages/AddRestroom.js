@@ -116,7 +116,7 @@ export default function AddRestroom() {
                     value={formState.latitude.value}
                     onChange={handleInputChange}
                     // type="number"
-                    inputProps={{ inputMode: 'numeric', pattern: '[0-9.]*' }}
+                    inputProps={{ inputMode: 'numeric', pattern: '[0-9.-]*' }}
                     id="margin-normal" margin="normal"
                   />
                   <TextField
@@ -129,7 +129,7 @@ export default function AddRestroom() {
                     value={formState.longitude.value}
                     onChange={handleInputChange}
                     // type="number"
-                    inputProps={{ inputMode: 'numeric', pattern: '[0-9.]*' }}
+                    inputProps={{ inputMode: 'numeric', pattern: '[0-9.-]*' }}
                   />
                 </Grid>
                 <Grid xs={12} item>

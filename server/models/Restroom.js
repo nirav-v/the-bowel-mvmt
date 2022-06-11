@@ -2,6 +2,18 @@ const { Schema, model } = require("mongoose");
 
 const reviewSchema = require("./Review");
 
+const pointSchema = new Schema({
+  type: {
+    type: String,
+    enum: ["Point"],
+    required: true,
+  },
+  coordinates: {
+    type: [Number],
+    required: true,
+  },
+});
+
 const restroomSchema = new Schema({
   areaDescription: {
     type: String,
