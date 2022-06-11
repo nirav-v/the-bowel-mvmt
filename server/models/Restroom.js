@@ -2,6 +2,18 @@ const { Schema, model } = require("mongoose");
 
 const reviewSchema = require("./Review");
 
+const pointSchema = new Schema({
+  type: {
+    type: String,
+    enum: ['Point'],
+    required: true
+  },
+  coordinates: {
+    type: [Number],
+    required: true
+  }
+});
+
 const restroomSchema = new Schema({
   areaDescription: {
     type: String,
@@ -11,15 +23,8 @@ const restroomSchema = new Schema({
     trim: true,
   },
   location: {
-    type: {
-      type: String,
-      enum: ["Point"],
-      required: true,
-    },
-    coordinates: {
-      type: [Number],
-      required: true,
-    },
+    type: pointSchema,
+    index: '2dsphere' // Create a special 2dsphere index 
   },
   changingStation: {
     type: Boolean,
