@@ -5,13 +5,13 @@ const reviewSchema = require("./Review");
 const pointSchema = new Schema({
   type: {
     type: String,
-    enum: ["Point"],
-    required: true,
+    enum: ['Point'],
+    required: true
   },
   coordinates: {
     type: [Number],
-    required: true,
-  },
+    required: true
+  }
 });
 
 const restroomSchema = new Schema({
@@ -23,15 +23,8 @@ const restroomSchema = new Schema({
     trim: true,
   },
   location: {
-    type: {
-      type: String,
-      enum: ["Point"],
-      required: true,
-    },
-    coordinates: {
-      type: [Number],
-      required: true,
-    },
+    type: pointSchema,
+    index: '2dsphere' // Create a special 2dsphere index on `City.location`
   },
   changingStation: {
     type: Boolean,
