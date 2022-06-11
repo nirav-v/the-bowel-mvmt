@@ -74,15 +74,29 @@ export default function SingleRestroom() {
           }}
         >
           <CardContent>
-            <Typography gutterBottom variant="h5">
-              Put toilet name here
-            </Typography>
+            <div>
+              <Typography gutterBottom variant="h6">
+                Location: {"placeholder"}
+              </Typography>
+              <Typography gutterBottom variant="h6">
+                Key/Code Required: {"boolean"}
+              </Typography>
+              <Typography gutterBottom variant="h6">
+                Changing Station: {"boolean"}
+              </Typography>
+              <Typography gutterBottom variant="h6">
+                adaAccessible: {"boolean"}
+              </Typography>
+              <Typography gutterBottom variant="h6">
+                Average Rating: {"placeholder"}
+              </Typography>
+            </div>
             {/* <form onSubmit={handleSubmit}> */}
             <form>
               <div className="my-3">
-                <h3 className="card-header bg-dark text-light p-2 m-0">
+                {/* <h3 className="card-header bg-dark text-light p-2 m-0">
                   User reviews here
-                </h3>
+                </h3> */}
                 <div className="bg-light py-4">
                   <blockquote
                     className="p-4"
