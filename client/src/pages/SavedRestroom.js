@@ -34,23 +34,23 @@ export default function SavedRestroom() {
   console.log(userData);
   console.log(userData.savedRestrooms);
 
-  const savedRRs = [
-    {
-      id: 1,
-      restroomName: "Restroom1",
-      restroomId: "1",
-    },
-    {
-      id: 2,
-      restroomName: "Restroom2",
-      restroomId: "2",
-    },
-    {
-      id: 3,
-      restroomName: "Restroom3",
-      restroomId: "3",
-    },
-  ];
+  // const savedRRs = [
+  //   {
+  //     id: 1,
+  //     restroomName: "Restroom1",
+  //     restroomId: "1",
+  //   },
+  //   {
+  //     id: 2,
+  //     restroomName: "Restroom2",
+  //     restroomId: "2",
+  //   },
+  //   {
+  //     id: 3,
+  //     restroomName: "Restroom3",
+  //     restroomId: "3",
+  //   },
+  // ];
 
   const navigate = useNavigate();
   const goToRestrooms = (id) => {

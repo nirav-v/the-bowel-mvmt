@@ -51,10 +51,9 @@ export default function NearbyRestroomList() {
       getNearbyRestrooms({
         variables: { lat, lon },
       });
-      console.count('fetching')
+      console.count("fetching");
     }
   }, [userCoords.coords, getNearbyRestrooms]);
-
 
   if (userCoords.pending) {
     return <h2>your location is needed to find nearby restrooms</h2>;
@@ -62,18 +61,16 @@ export default function NearbyRestroomList() {
 
   if (error || userCoords.error) {
     alert("unexpected server error, redirecting to home page...");
-     return <Navigate to="/" />;
-  
+    return <Navigate to="/" />;
   }
 
   // show loading message until our array of restrooms is ready to render
   if (loading || !data) {
     return <h2>Searching NEARBY RESTROOMS...</h2>;
   }
-const restrooms = data.nearbyRestrooms;
+  const restrooms = data.nearbyRestrooms;
 
-console.log(restrooms)
-
+  console.log(restrooms);
 
   return (
     <div>
@@ -86,7 +83,12 @@ console.log(restrooms)
             </Link>
             <p>
               Rating:{" "}
-              <Rating name="half-rating" defaultValue={4} precision={0.5} readOnly/>
+              <Rating
+                name="half-rating read-only"
+                defaultValue={4}
+                precision={0.5}
+                readOnly
+              />
               {restroom.adaAccessible ? <AccessibleIcon /> : null}
               {restroom.changingStation ? <BabyChangingStationIcon /> : null}
               {restroom.keyRequired ? <KeyIcon /> : null}
