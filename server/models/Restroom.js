@@ -24,7 +24,7 @@ const restroomSchema = new Schema({
   },
   location: {
     type: pointSchema,
-    index: '2dsphere' // Create a special 2dsphere index on `City.location`
+    index: '2dsphere' // Create a special 2dsphere index 
   },
   changingStation: {
     type: Boolean,
