@@ -10,7 +10,6 @@ const ReviewList = ({ reviews = [] }) => {
   if (!reviews.length) {
     return <h3>No Restroom Yet</h3>;
   }
-  console.log(reviews);
 
   return (
     <>
