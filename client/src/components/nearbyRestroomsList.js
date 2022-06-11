@@ -71,6 +71,10 @@ export default function NearbyRestroomList() {
     return <h2>Searching NEARBY RESTROOMS...</h2>;
   }
 const restrooms = data.nearbyRestrooms;
+
+console.log(restrooms)
+
+
   return (
     <div>
       {restrooms &&
@@ -82,7 +86,7 @@ const restrooms = data.nearbyRestrooms;
             </Link>
             <p>
               Rating:{" "}
-              <Rating name="half-rating" defaultValue={4} precision={0.5} />
+              <Rating name="half-rating" defaultValue={4} precision={0.5} readOnly/>
               {restroom.adaAccessible ? <AccessibleIcon /> : null}
               {restroom.changingStation ? <BabyChangingStationIcon /> : null}
               {restroom.keyRequired ? <KeyIcon /> : null}
