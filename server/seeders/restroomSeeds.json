@@ -93,7 +93,7 @@
     "areaDescription": "Neighbor-House Restroom",
     "location": {
       "type": "Point",
-      "coordinates": [ -117.98426695690975, 33.87696652735619]
+      "coordinates": [-117.01305118700688, 32.802331633374614]
     },
     "changingStation": false,
     "keyRequired": true,
@@ -108,3 +108,4 @@
     ]
   }
 ]
+
