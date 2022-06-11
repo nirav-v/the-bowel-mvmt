@@ -39,19 +39,19 @@ export default function SingleRestroom() {
   const restroom = data?.singleRestroom || {};
   const reviews = data?.singleRestroom.reviews || {};
 
- // logic for getting average rating
+  // logic for getting average rating
   if (reviews.length) {
     // console.log(reviews[0].rating) // can calculate avg inside here
-    let total = 0
+    let total = 0;
     for (let i = 0; i < reviews.length; i++) {
       total += reviews[i].rating;
     }
     var avgRating = total / reviews.length; // had to use var for avgRating to be globally available outside the conditional
   }
-if (!avgRating){
-  return null
-}
-console.log(avgRating)
+  if (!avgRating) {
+    return null;
+  }
+  console.log(avgRating);
 
   const handleSaveRestroom = async (restroomId) => {
     try {
@@ -75,6 +75,17 @@ console.log(avgRating)
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
       <CssBaseline />
+      <Typography
+        gutterBottom
+        variant="h5"
+        sx={{ fontWeight: "bold", py: 2 }}
+        style={{
+          textAlignVertical: "center",
+          textAlign: "center",
+        }}
+      >
+        View restroom and reviews
+      </Typography>
       <Grid
         container
         justifyContent="center"
@@ -89,25 +100,26 @@ console.log(avgRating)
             padding: "20px 5px",
             borderRadius: "16px",
             opacity: 0.9,
+            marginBottom: 30,
           }}
         >
           <CardContent>
             <div>
-              <Typography gutterBottom >
+              <Typography gutterBottom>
                 Location: {restroom.areaDescription}
               </Typography>
-              <Typography gutterBottom >
+              <Typography gutterBottom>
                 Key/Code Required:{" "}
                 {restroom.keyRequired === true ? "Yes" : "No"}
               </Typography>
-              <Typography gutterBottom >
+              <Typography gutterBottom>
                 Changing Station:{" "}
                 {restroom.changingStation === true ? "Yes" : "No"}
               </Typography>
-              <Typography gutterBottom >
+              <Typography gutterBottom>
                 ADA Accessible: {restroom.adaAccessible === true ? "Yes" : "No"}
               </Typography>
-              <Typography gutterBottom >
+              <Typography gutterBottom>
                 Average Rating: {avgRating + " out of 5 stars"}
               </Typography>
             </div>

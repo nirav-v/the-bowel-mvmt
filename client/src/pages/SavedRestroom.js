@@ -74,6 +74,8 @@ export default function SavedRestroom() {
             padding: "20px 5px",
             borderRadius: "16px",
             opacity: 0.9,
+            marginBottom: 30,
+            marginTop: 30,
           }}
         >
           <CardContent>
