@@ -108,7 +108,7 @@ console.log(avgRating)
                 ADA Accessible: {restroom.adaAccessible === true ? "Yes" : "No"}
               </Typography>
               <Typography gutterBottom >
-                Average Rating: {avgRating}
+                Average Rating: {avgRating + " out of 5 stars"}
               </Typography>
             </div>
             {/* <form onSubmit={handleSubmit}> */}
