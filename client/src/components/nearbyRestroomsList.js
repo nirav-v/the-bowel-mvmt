@@ -68,7 +68,7 @@ export default function NearbyRestroomList() {
 
   // show loading message until our array of restrooms is ready to render
   if (loading || !data) {
-    return <h2>LOADING NEARBY RESTROOMS...</h2>;
+    return <h2>Searching NEARBY RESTROOMS...</h2>;
   }
 const restrooms = data.nearbyRestrooms;
   return (

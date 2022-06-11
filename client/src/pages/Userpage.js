@@ -60,6 +60,7 @@ export default function Userpage() {
             padding: "20px 5px",
             borderRadius: "16px",
             opacity: 0.9,
+            marginBottom: 30,
           }}
         >
           <CardContent>
