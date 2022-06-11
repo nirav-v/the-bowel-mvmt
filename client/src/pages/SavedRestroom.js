@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 
-import {ME} from '../util/queries'
+import { ME } from "../util/queries";
 
 const styles = {
   paperContainer: {
@@ -27,37 +27,12 @@ const styles = {
 };
 
 export default function SavedRestroom() {
-  // const [userData, setUserData] = useState({});
+  const { loading, data, error } = useQuery(ME);
 
-  // use this to determine if `useEffect()` hook needs to run again
-  // const userDataLength = Object.keys(userData).length;
+  const userData = data?.me || {};
 
-  const {loading, data, error} = useQuery(ME)
-
-const userData = data?.me || {}
-
-console.log(userData);
-
-  // useEffect(() => {
-  //   try {
-  //     if (loading) {
-  //       console.log("loading..");
-  //     }
-  //     if (error) {
-  //       console.log(error);
-  //     }
-  //     if (data) {
-  //       console.log(data)
-  //       setUserData(data.me);
-  //     }
-
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }, [userDataLength]);
-
-  console.log(userData.savedRestrooms)
-
+  console.log(userData);
+  console.log(userData.savedRestrooms);
 
   const savedRRs = [
     {
