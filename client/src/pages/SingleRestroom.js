@@ -7,6 +7,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import Rating from '@mui/material/Rating';
 
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
@@ -37,21 +38,18 @@ export default function SingleRestroom() {
   });
 
   const restroom = data?.singleRestroom || {};
-  const reviews = data?.singleRestroom.reviews || {};
+  console.log(restroom)
+   const reviews = data?.singleRestroom.reviews || {};
+   console.log(reviews)
 
-  // logic for getting average rating
+  // // logic for getting average rating
   if (reviews.length) {
-    // console.log(reviews[0].rating) // can calculate avg inside here
     let total = 0;
     for (let i = 0; i < reviews.length; i++) {
       total += reviews[i].rating;
     }
     var avgRating = total / reviews.length; // had to use var for avgRating to be globally available outside the conditional
   }
-  if (!avgRating) {
-    return null;
-  }
-  console.log(avgRating);
 
   const handleSaveRestroom = async (restroomId) => {
     try {
@@ -120,7 +118,8 @@ export default function SingleRestroom() {
                 ADA Accessible: {restroom.adaAccessible === true ? "Yes" : "No"}
               </Typography>
               <Typography gutterBottom>
-                Average Rating: {avgRating + " out of 5 stars"}
+                Average Rating: {avgRating? avgRating + " out of 5 stars" : "No Reviews Yet"}
+                  <Rating name="read-only" value={avgRating? avgRating: null} precision={0.1} readOnly />
               </Typography>
             </div>
             {/* <form onSubmit={handleSubmit}> */}
