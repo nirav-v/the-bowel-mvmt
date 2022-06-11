@@ -12,6 +12,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+
+import {ME} from '../util/queries'
 
 const styles = {
   paperContainer: {
@@ -23,6 +27,38 @@ const styles = {
 };
 
 export default function SavedRestroom() {
+  // const [userData, setUserData] = useState({});
+
+  // use this to determine if `useEffect()` hook needs to run again
+  // const userDataLength = Object.keys(userData).length;
+
+  const {loading, data, error} = useQuery(ME)
+
+const userData = data?.me || {}
+
+console.log(userData);
+
+  // useEffect(() => {
+  //   try {
+  //     if (loading) {
+  //       console.log("loading..");
+  //     }
+  //     if (error) {
+  //       console.log(error);
+  //     }
+  //     if (data) {
+  //       console.log(data)
+  //       setUserData(data.me);
+  //     }
+
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }, [userDataLength]);
+
+  console.log(userData.savedRestrooms)
+
+
   const savedRRs = [
     {
       id: 1,
@@ -69,18 +105,18 @@ export default function SavedRestroom() {
             <Typography gutterBottom variant="h5">
               Your Saved Restrooms:
             </Typography>
-            {savedRRs.map(({ restroomName, restroomId, id }) => (
-              <List key={id}>
+            {userData.savedRestrooms?.map((restroom) => (
+              <List key={restroom._id}>
                 <ListItem disablePadding>
                   <ListItemButton
                     onClick={() => {
-                      goToRestrooms(restroomId);
+                      goToRestrooms(restroom._id);
                     }}
                   >
                     <ListItemIcon>
                       <FavoriteIcon />
                     </ListItemIcon>
-                    <ListItemText primary={restroomName} />
+                    <ListItemText primary={restroom.areaDescription} />
                   </ListItemButton>
                 </ListItem>
               </List>
