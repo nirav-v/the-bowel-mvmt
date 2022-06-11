@@ -18,6 +18,7 @@ import { SINGLERESTROOM } from "../util/queries";
 import { SAVE_RESTROOM } from "../util/mutations";
 import { removeClientSetsFromDocument } from "@apollo/client/utilities";
 import AddReviewForm from "../components/AddReviewForm/index";
+import { VariablesInAllowedPositionRule } from "graphql";
 
 const styles = {
   paperContainer: {
@@ -36,6 +37,21 @@ export default function SingleRestroom() {
   });
 
   const restroom = data?.singleRestroom || {};
+  const reviews = data?.singleRestroom.reviews || {};
+
+ // logic for getting average rating
+  if (reviews.length) {
+    // console.log(reviews[0].rating) // can calculate avg inside here
+    let total = 0
+    for (let i = 0; i < reviews.length; i++) {
+      total += reviews[i].rating;
+    }
+    var avgRating = total / reviews.length; // had to use var for avgRating to be globally available outside the conditional
+  }
+if (!avgRating){
+  return null
+}
+console.log(avgRating)
 
   const handleSaveRestroom = async (restroomId) => {
     try {
@@ -92,7 +108,7 @@ export default function SingleRestroom() {
                 ADA Accessible: {restroom.adaAccessible === true ? "Yes" : "No"}
               </Typography>
               <Typography gutterBottom >
-                Average Rating: {"placeholder"}
+                Average Rating: {avgRating + " out of 5 stars"}
               </Typography>
             </div>
             {/* <form onSubmit={handleSubmit}> */}
