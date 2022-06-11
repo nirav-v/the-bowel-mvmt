@@ -44,8 +44,10 @@ export default function SingleRestroom() {
           id: restroomId,
         },
       });
+      alert("Restroom has been saved successfully!");
     } catch (error) {
       console.log(error);
+      alert("Error, please try again later");
     }
   };
 
@@ -75,19 +77,21 @@ export default function SingleRestroom() {
         >
           <CardContent>
             <div>
-              <Typography gutterBottom variant="h6">
-                Location: {"placeholder"}
+              <Typography gutterBottom >
+                Location: {restroom.areaDescription}
               </Typography>
-              <Typography gutterBottom variant="h6">
-                Key/Code Required: {"boolean"}
+              <Typography gutterBottom >
+                Key/Code Required:{" "}
+                {restroom.keyRequired === true ? "Yes" : "No"}
               </Typography>
-              <Typography gutterBottom variant="h6">
-                Changing Station: {"boolean"}
+              <Typography gutterBottom >
+                Changing Station:{" "}
+                {restroom.changingStation === true ? "Yes" : "No"}
               </Typography>
-              <Typography gutterBottom variant="h6">
-                adaAccessible: {"boolean"}
+              <Typography gutterBottom >
+                ADA Accessible: {restroom.adaAccessible === true ? "Yes" : "No"}
               </Typography>
-              <Typography gutterBottom variant="h6">
+              <Typography gutterBottom >
                 Average Rating: {"placeholder"}
               </Typography>
             </div>
@@ -108,12 +112,15 @@ export default function SingleRestroom() {
                     }}
                   >
                     {restroom.areaDescription}
-                    <Button onClick={() => handleSaveRestroom(restroom._id)}>
+                    <Button
+                      // variant="contained"
+                      sx={{ textTransform: "capitalize" }}
+                      onClick={() => handleSaveRestroom(restroom._id)}
+                    >
                       {"Save Restroom"}
                     </Button>
                   </blockquote>
                 </div>
-
                 <div className="my-5">
                   <ReviewList reviews={restroom.reviews} />
                 </div>

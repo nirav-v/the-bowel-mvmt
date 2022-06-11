@@ -74,7 +74,7 @@ export default function AddRestroom() {
       alert("New restroom has been added successfully!");
     }
     catch(err) {
-      console.log(err)
+      console.log(err);
       alert("Error, please check your entries or try again later");
     }
 
