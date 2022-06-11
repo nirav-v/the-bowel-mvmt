@@ -38,9 +38,11 @@ export default function SingleRestroom() {
   });
 
   const restroom = data?.singleRestroom || {};
-  const reviews = data?.singleRestroom.reviews || {};
+  console.log(restroom)
+   const reviews = data?.singleRestroom.reviews || {};
+   console.log(reviews)
 
-  // logic for getting average rating
+  // // logic for getting average rating
   if (reviews.length) {
     let total = 0;
     for (let i = 0; i < reviews.length; i++) {
@@ -48,10 +50,6 @@ export default function SingleRestroom() {
     }
     var avgRating = total / reviews.length; // had to use var for avgRating to be globally available outside the conditional
   }
-  if (!avgRating) {
-    return null;
-  }
-  console.log(avgRating);
 
   const handleSaveRestroom = async (restroomId) => {
     try {
@@ -120,8 +118,8 @@ export default function SingleRestroom() {
                 ADA Accessible: {restroom.adaAccessible === true ? "Yes" : "No"}
               </Typography>
               <Typography gutterBottom>
-                Average Rating: {avgRating + " out of 5 stars"}
-                  <Rating name="read-only" value={avgRating} precision={0.1} readOnly />
+                Average Rating: {avgRating? avgRating + " out of 5 stars" : "No Reviews Yet"}
+                  <Rating name="read-only" value={avgRating? avgRating: null} precision={0.1} readOnly />
               </Typography>
             </div>
             {/* <form onSubmit={handleSubmit}> */}
