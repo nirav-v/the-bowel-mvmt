@@ -14,6 +14,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useMutation } from '@apollo/client';
 import { CREATE_RESTROOM } from '../util/mutations';
+// import Alert from '@mui/material/Alert';
 
 const styles = {
   paperContainer: {
@@ -70,9 +71,11 @@ export default function AddRestroom() {
 
     try {
       createRestroom({variables: {areaDescription: formState.location, changingStation: checkedTwo, keyRequired: checkedOne, adaAccessible: checkedThree, lat: parseFloat(formState.latitude), lon: parseFloat(formState.longitude)}})
+      alert("New restroom has been added successfully!");
     }
     catch(err) {
       console.log(err)
+      alert("Error, please check your entries or try again later");
     }
 
     setFormState ({
@@ -80,9 +83,10 @@ export default function AddRestroom() {
       longitude: "",
       location: "",
     });
-    // setCheckedOne( false );
-    // setCheckedTwo( false );
-    // setCheckedThree( false );
+
+    setCheckedOne(false);
+    setCheckedTwo(false);
+    setCheckedThree(false);
 
   };
 
@@ -122,7 +126,7 @@ export default function AddRestroom() {
                     required
                     name="latitude"
                     disabled={loading}
-                    value={formState.latitude.value}
+                    value={formState.latitude}
                     onChange={handleInputChange}
                     // type="number"
                     inputProps={{ inputMode: 'numeric', pattern: '[0-9.-]*' }}
@@ -135,7 +139,7 @@ export default function AddRestroom() {
                     required
                     name="longitude"
                     disabled={loading}
-                    value={formState.longitude.value}
+                    value={formState.longitude}
                     onChange={handleInputChange}
                     // type="number"
                     inputProps={{ inputMode: 'numeric', pattern: '[0-9.-]*' }}
@@ -157,14 +161,13 @@ export default function AddRestroom() {
                     required
                     name="location"
                     disabled={loading}
-                    value={formState.location.value}
+                    value={formState.location}
                     onChange={handleInputChange}
                   />
                 </Grid>
                 <Grid xs={12} item>
                 <FormControlLabel
-                  value={checkedOne}
-                  control={<Checkbox />}
+                  control={<Checkbox checked={checkedOne}/>}
                   label="Key / code required"
                   labelPlacement="start"
                   onChange={handleChangeOne}
@@ -172,8 +175,7 @@ export default function AddRestroom() {
                 </Grid>
                 <Grid xs={12} item>
                 <FormControlLabel
-                  value={checkedTwo}
-                  control={<Checkbox />}
+                  control={<Checkbox checked={checkedTwo} />}
                   label="Changing station"
                   labelPlacement="start"
                   onChange={handleChangeTwo}
@@ -181,8 +183,7 @@ export default function AddRestroom() {
                 </Grid>
                 <Grid xs={12} item>
                 <FormControlLabel
-                  value={checkedThree}
-                  control={<Checkbox />}
+                  control={<Checkbox checked={checkedThree}/>}
                   label="ADA"
                   labelPlacement="start"
                   onChange={handleChangeThree}
