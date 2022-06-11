@@ -41,7 +41,6 @@ export default function SingleRestroom() {
 
  // logic for getting average rating
   if (reviews.length) {
-    // console.log(reviews[0].rating) // can calculate avg inside here
     let total = 0
     for (let i = 0; i < reviews.length; i++) {
       total += reviews[i].rating;
