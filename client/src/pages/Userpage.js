@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import NearbyRestroomList from "../components/nearbyRestroomsList";
 
 const styles = {
   paperContainer: {
@@ -65,7 +66,7 @@ export default function Userpage() {
             <Typography gutterBottom variant="h5">
               Click on a restroom to view amenities and read reviews
             </Typography>
-            {/* ---- put restroom list component here ----- */}
+            <NearbyRestroomList/>
           </CardContent>
         </Card>
       </Grid>
