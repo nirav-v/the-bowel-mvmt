@@ -52,6 +52,12 @@ export default function AddReviewForm() {
 
   return (
     <div>
+      <h3
+        className="p-5 display-inline-block"
+        style={{ borderBottom: "1px dotted #1a1a1a" }}
+      >
+        Add your review
+      </h3>
       <Typography
         gutterBottom
         variant="body2"

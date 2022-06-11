@@ -44,8 +44,10 @@ export default function SingleRestroom() {
           id: restroomId,
         },
       });
+      alert("Restroom has been saved successfully!");
     } catch (error) {
       console.log(error);
+      alert("Error, please try again later");
     }
   };
 
