@@ -5,11 +5,8 @@ import Paper from "@mui/material/Paper";
 import CssBaseline from "@mui/material/CssBaseline";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Rating from "@mui/material/Rating";
-import Stack from "@mui/material/Stack";
 
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
@@ -20,6 +17,7 @@ import ReviewList from "../components/ReviewList";
 import { SINGLERESTROOM } from "../util/queries";
 import { SAVE_RESTROOM } from "../util/mutations";
 import { removeClientSetsFromDocument } from "@apollo/client/utilities";
+import AddReviewForm from "../components/AddReviewForm/index";
 
 const styles = {
   paperContainer: {
@@ -51,8 +49,7 @@ export default function SingleRestroom() {
     }
   };
 
-//
-  const [value, setValue] = React.useState(0);
+  // const [value, setValue] = React.useState(0);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -76,7 +73,6 @@ export default function SingleRestroom() {
             opacity: 0.9,
           }}
         >
- 
           <CardContent>
             <Typography gutterBottom variant="h5">
               Put toilet name here
@@ -98,59 +94,17 @@ export default function SingleRestroom() {
                     }}
                   >
                     {restroom.areaDescription}
-                              <Button onClick={() => handleSaveRestroom(restroom._id)}>
-            {"Save Restroom"}
-          </Button>
+                    <Button onClick={() => handleSaveRestroom(restroom._id)}>
+                      {"Save Restroom"}
+                    </Button>
                   </blockquote>
                 </div>
 
                 <div className="my-5">
                   <ReviewList reviews={restroom.reviews} />
                 </div>
-
-                <Typography
-                  gutterBottom
-                  variant="body2"
-                  component="p"
-                  color="textSecondary"
-                >
-                  Tell us how you feel after your visit...
-                </Typography>
-                <Rating
-                  name="size-medium"
-                  value={value}
-                  onChange={(event, newValue) => {
-                    setValue(newValue);
-                  }}
-                />
-                <TextField
-                  label="Your review"
-                  placeholder="Insert text to add a review"
-                  fullWidth
-                  required
-                  multiline
-                  rows={10}
-                  // id="margin-normal"
-                  // margin="normal"
-                />
-                <TextField
-                  label="Photo URL"
-                  placeholder="Input photo URL"
-                  fullWidth
-                  // id="margin-normal"
-                  // margin="normal"
-                  id="margin-dense"
-                  margin="dense"
-                />
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  // justifyContent="flex-end"
-                >
-                  Submit
-                </Button>
+                {/* Review form from component */}
+                <AddReviewForm />
               </div>
             </form>
           </CardContent>

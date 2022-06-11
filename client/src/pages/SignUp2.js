@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../util/auth";
-import duck from "../images/duck.png";
+// import duck from "../images/duck.png";
+import pinkToiletPaper from "../images/pink-paper.jpg";
 import Paper from "@mui/material/Paper";
 import CssBaseline from "@mui/material/CssBaseline";
 import Card from "@mui/material/Card";
@@ -26,7 +27,7 @@ const styles = {
     paddingRight: "0.25em",
   },
   paperContainer: {
-    backgroundImage: `url(${duck})`,
+    backgroundImage: `url(${pinkToiletPaper})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     // height: 1300,
@@ -76,7 +77,12 @@ export default function SignUp2() {
       >
         <Card
           // style={{ maxWidth: 650, padding: "20px 5px", borderRadius: "16px", backgroundColor: 'transparent', }}
-          style={{ maxWidth: 650, padding: "20px 5px", borderRadius: "16px", opacity: .9 }}
+          style={{
+            maxWidth: 650,
+            padding: "20px 5px",
+            borderRadius: "16px",
+            opacity: 0.9,
+          }}
         >
           <CardContent>
             <Typography gutterBottom variant="h5">
