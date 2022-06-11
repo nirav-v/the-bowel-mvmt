@@ -61,7 +61,7 @@ export default function Home() {
             }}
           >
             <CardContent>
-              <Typography>
+              {/* <Typography> */}
                 <h3>
                   <a href="./restroomsNearYou">Browse restrooms</a> near you and
                   sign up to help us add to our database!
@@ -70,7 +70,7 @@ export default function Home() {
                   User must share location OR change location settings in
                   browser
                 </p>
-              </Typography>
+              {/* </Typography> */}
             </CardContent>
           </Card>
 
