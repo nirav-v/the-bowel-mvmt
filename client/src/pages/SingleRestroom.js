@@ -39,7 +39,7 @@ export default function SingleRestroom() {
   const restroom = data?.singleRestroom || {};
   const reviews = data?.singleRestroom.reviews || {};
 
- 
+ // logic for getting average rating
   if (reviews.length) {
     // console.log(reviews[0].rating) // can calculate avg inside here
     let total = 0
@@ -48,7 +48,10 @@ export default function SingleRestroom() {
     }
     var avgRating = total / reviews.length; // had to use var for avgRating to be globally available outside the conditional
   }
- console.log(avgRating)
+if (!avgRating){
+  return null
+}
+console.log(avgRating)
 
   const handleSaveRestroom = async (restroomId) => {
     try {
@@ -57,8 +60,10 @@ export default function SingleRestroom() {
           id: restroomId,
         },
       });
+      alert("Restroom has been saved successfully!");
     } catch (error) {
       console.log(error);
+      alert("Error, please try again later");
     }
   };
 
@@ -87,15 +92,31 @@ export default function SingleRestroom() {
           }}
         >
           <CardContent>
-            <Typography gutterBottom variant="h5">
-              Put toilet name here
-            </Typography>
+            <div>
+              <Typography gutterBottom >
+                Location: {restroom.areaDescription}
+              </Typography>
+              <Typography gutterBottom >
+                Key/Code Required:{" "}
+                {restroom.keyRequired === true ? "Yes" : "No"}
+              </Typography>
+              <Typography gutterBottom >
+                Changing Station:{" "}
+                {restroom.changingStation === true ? "Yes" : "No"}
+              </Typography>
+              <Typography gutterBottom >
+                ADA Accessible: {restroom.adaAccessible === true ? "Yes" : "No"}
+              </Typography>
+              <Typography gutterBottom >
+                Average Rating: {avgRating}
+              </Typography>
+            </div>
             {/* <form onSubmit={handleSubmit}> */}
             <form>
               <div className="my-3">
-                <h3 className="card-header bg-dark text-light p-2 m-0">
+                {/* <h3 className="card-header bg-dark text-light p-2 m-0">
                   User reviews here
-                </h3>
+                </h3> */}
                 <div className="bg-light py-4">
                   <blockquote
                     className="p-4"
@@ -107,12 +128,15 @@ export default function SingleRestroom() {
                     }}
                   >
                     {restroom.areaDescription}
-                    <Button onClick={() => handleSaveRestroom(restroom._id)}>
+                    <Button
+                      // variant="contained"
+                      sx={{ textTransform: "capitalize" }}
+                      onClick={() => handleSaveRestroom(restroom._id)}
+                    >
                       {"Save Restroom"}
                     </Button>
                   </blockquote>
                 </div>
-
                 <div className="my-5">
                   <ReviewList reviews={restroom.reviews} />
                 </div>

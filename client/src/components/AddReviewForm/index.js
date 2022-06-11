@@ -3,13 +3,13 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
-import { useMutation } from '@apollo/client';
+import { useMutation } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { ADD_REVIEW } from '../../util/mutations';
+import { ADD_REVIEW } from "../../util/mutations";
 
 const initialFormState = {
-  reviewText: ""
+  reviewText: "",
 };
 
 export default function AddReviewForm() {
@@ -30,24 +30,34 @@ export default function AddReviewForm() {
     console.log(formState);
 
     try {
-      await addReview({variables: {restroomId: restroomId, reviewText: formState.reviewText, rating: value}})
+      await addReview({
+        variables: {
+          restroomId: restroomId,
+          reviewText: formState.reviewText,
+          rating: value,
+        },
+      });
       alert("Your review has been added successfully!");
-    }
-    catch(err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
       alert("Error, please check your entries or try again later");
     }
 
-    setFormState ({
-      reviewText: ""
+    setFormState({
+      reviewText: "",
     });
 
     setValue(0);
-
   };
 
   return (
     <div>
+      <h3
+        className="p-5 display-inline-block"
+        style={{ borderBottom: "1px dotted #1a1a1a" }}
+      >
+        Add your review
+      </h3>
       <Typography
         gutterBottom
         variant="body2"
@@ -73,15 +83,23 @@ export default function AddReviewForm() {
         name="reviewText"
         value={formState.reviewText}
         onChange={handleInputChange}
+        id="margin-normal"
+        margin="normal"
       />
-      <TextField
+      {/* <TextField
         label="Photo URL"
         placeholder="Input photo URL"
         fullWidth
         id="margin-dense"
         margin="dense"
-      />
-      <Button size="small" variant="contained" color="primary" type="submit" onClick={handleSubmit}>
+      /> */}
+      <Button
+        size="small"
+        variant="contained"
+        color="primary"
+        type="submit"
+        onClick={handleSubmit}
+      >
         Submit
       </Button>
     </div>
