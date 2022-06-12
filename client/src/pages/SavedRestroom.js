@@ -62,8 +62,8 @@ export default function SavedRestroom() {
         >
           <CardContent>
             <Typography gutterBottom variant="h5">
-
-              Your Saved Restrooms:
+              {/* Your Saved Restrooms: */}
+              { userData.savedRestrooms && userData.savedRestrooms.length===0? "No restroom has been saved yet!" : "Your Saved Restrooms:"}
             </Typography>
             {userData.savedRestrooms?.map((restroom) => (
               <List key={restroom._id}>

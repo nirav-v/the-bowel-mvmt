@@ -106,6 +106,24 @@
         "userId": "62a38490936dc4a82b2ee62a"
       }
     ]
+  },
+  {
+    "areaDescription": "Your Nearby Bush",
+    "location": {
+      "type": "Point",
+      "coordinates": [-117.98278809548025, 33.87853694389753]
+    },
+    "changingStation": false,
+    "keyRequired": false,
+    "adaAccessible": false,
+    "reviews": [
+      {
+        "reviewText": "Many flys, liquid splash on shoes, and most importantly, where's the toilet paper?",
+        "rating": 1,
+        "username": "kevin",
+        "userId": "62a38490936dc4a82b2ee62a"
+      }
+    ]
   }
 ]
 
