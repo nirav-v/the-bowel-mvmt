@@ -35,7 +35,7 @@ export default function Userpage() {
       >
         <h1
           style={{
-            textShadow: "-3px -1px 3px black",
+            textShadow: "-2px -1px 3px black",
             color: "rgb(30, 144, 255)",
             // boxShadow:
             //   "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
