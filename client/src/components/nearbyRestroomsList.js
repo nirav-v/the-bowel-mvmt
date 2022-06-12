@@ -48,7 +48,7 @@ export default function NearbyRestroomList() {
       getNearbyRestrooms({
         variables: { lat, lon },
       });
-      console.count("fetching");
+      // console.count("fetching");
     }
   }, [userCoords.coords, getNearbyRestrooms]);
 
@@ -67,10 +67,8 @@ export default function NearbyRestroomList() {
   }
 
   const restrooms = data.nearbyRestrooms;
-  console.log(restrooms);
-
-  // try adding logic for avgRatng to show for each restroom on list
-  //  const avgRatingsArray = []
+ 
+  // function with logic for avgRating to return avg rating of a restroom
   const getAvgRating =  (restroom) => {
     try {
         let reviews = restroom.reviews;
@@ -84,18 +82,11 @@ export default function NearbyRestroomList() {
           }
           var avgRating = total / reviews.length; // had to use var for avgRating to be globally available outside the conditional
        
-          // console.log(avgRating)
           return avgRating
-      // avgRatingsArray.push(rating);
     } catch (error) {
       console.log(error);
     }
   };
-for (let i =0; i < restrooms.length; i++){
-  console.log(getAvgRating(restrooms[i]))
-}
-
-  //console.log(avgRatingsArray)
 
   return (
     <div>
@@ -107,11 +98,10 @@ for (let i =0; i < restrooms.length; i++){
               {restroom.areaDescription}
             </Link>
             <p>
-              Rating: {/* {ratingsArray.map( rating => ( ))} */}
+              Rating: 
               <Rating
                 name="half-rating"
                  defaultValue={getAvgRating(restroom)}
-                // defaultValue={1}
                 precision={0.1}
                 readOnly
               />
