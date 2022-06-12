@@ -33,7 +33,19 @@ export default function Userpage() {
         direction="column"
         style={{ minHeight: "100vh" }}
       >
-        <h1>Welcome {isLoggedIn ? user.username : "Guest"}!</h1>
+        <h1
+          style={{
+            textShadow: "-2px -1px 3px black",
+            color: "rgb(30, 144, 255)",
+            // boxShadow:
+            //   "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
+            borderRadius: "10px",
+            padding: "1px 5px",
+            background: "rgba(255, 255, 255, 0.3)",
+          }}
+        >
+          Welcome {isLoggedIn ? user.username : "Guest"}!
+        </h1>
         <Stack
           spacing={{ xs: 3, sm: 6, md: 12 }}
           direction={{ xs: "column", sm: "row" }}
