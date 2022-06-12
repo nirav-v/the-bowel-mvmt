@@ -7,6 +7,7 @@ import { useMutation } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { ADD_REVIEW } from "../../util/mutations";
+import Box from "@mui/material/Box";
 
 const initialFormState = {
   reviewText: "",
@@ -93,15 +94,17 @@ export default function AddReviewForm() {
         id="margin-dense"
         margin="dense"
       /> */}
-      <Button
-        size="small"
-        variant="contained"
-        color="primary"
-        type="submit"
-        onClick={handleSubmit}
-      >
-        Submit
-      </Button>
+      <Box textAlign="center">
+        <Button
+          size="small"
+          variant="contained"
+          color="primary"
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Submit
+        </Button>
+      </Box>
     </div>
   );
 }
