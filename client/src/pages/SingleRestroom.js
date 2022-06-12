@@ -120,8 +120,8 @@ export default function SingleRestroom() {
               </Typography>
               <Typography gutterBottom>
                 Average Rating: {avgRating? avgRating + " out of 5 stars" : "No Reviews Yet"}
-                  <Rating name="read-only" value={avgRating? avgRating: null} precision={0.1} readOnly />
               </Typography>
+              <Rating name="read-only" value={avgRating? avgRating: null} precision={0.1} readOnly />
             </div>
             {/* <form onSubmit={handleSubmit}> */}
             <form>

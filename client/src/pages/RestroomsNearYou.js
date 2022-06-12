@@ -32,9 +32,9 @@ const styles = {
     position: "relative",
     marginLeft: "auto",
     marginRight: "auto",
-    // backgroundColor: "rgba(52, 52, 52, 0.8)",
+    backgroundColor: "#F9F9F9",
     // color: "white",
-    fontSize: "30px",
+    // fontSize: "30px",
   },
 };
 
