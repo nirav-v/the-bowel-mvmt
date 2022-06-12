@@ -140,7 +140,7 @@ export default function SingleRestroom() {
                   >
                     {restroom.areaDescription}
                     <Button
-                      // variant="contained"
+                      variant="contained"
                       sx={{ textTransform: "capitalize" }}
                       onClick={() => handleSaveRestroom(restroom._id)}
                     >
