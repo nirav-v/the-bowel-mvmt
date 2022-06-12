@@ -34,7 +34,7 @@ const useCoords = () => {
 
 export default function NearbyRestroomList() {
   // we declare out restrooms state variable with an initial state of false which will later be set to our array of nearby restrooms
-  //const [restrooms, setRestroomState] = useState(false);
+ const [restroomRating, setRestroomRating] = useState(null)
 
   // we have getUserLocation returning a promise that we can access the coordinates from
   const userCoords = useCoords();
@@ -70,9 +70,25 @@ export default function NearbyRestroomList() {
   if (loading || !data) {
     return <h2>Searching NEARBY RESTROOMS...</h2>;
   }
-const restrooms = data.nearbyRestrooms;
 
+const restrooms = data.nearbyRestrooms;
 console.log(restrooms)
+// try adding logic for avgRatng to show for each restroom on list
+for (let i =0; i < restrooms.length; i++){
+  var reviewArray = restrooms[i].reviews
+  // console.log(reviewArray)
+  if (reviewArray.length){
+  let total = 0;
+     for (let i = 0; i < reviewArray.length; i++) {
+       total += reviewArray[i].rating;
+      //  console.log(total)
+     }
+     var rating = total / reviewArray.length
+} else {
+  rating = null
+}
+console.log(restrooms[i].areaDescription, rating)
+}
 
 
   return (
@@ -86,7 +102,9 @@ console.log(restrooms)
             </Link>
             <p>
               Rating:{" "}
-              <Rating name="half-rating" defaultValue={4} precision={0.5} readOnly/>
+
+              <Rating name="half-rating" defaultValue={rating} precision={0.5} readOnly/>
+              
               {restroom.adaAccessible ? <AccessibleIcon /> : null}
               {restroom.changingStation ? <BabyChangingStationIcon /> : null}
               {restroom.keyRequired ? <KeyIcon /> : null}
