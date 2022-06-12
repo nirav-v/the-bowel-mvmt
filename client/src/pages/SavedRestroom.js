@@ -31,14 +31,23 @@ export default function SavedRestroom() {
 
   const userData = data?.me || {};
 
-  // console.log(userData);
-  // console.log(userData.savedRestrooms);
+  console.log(userData);
+  console.log(userData.savedRestrooms);
 
   const navigate = useNavigate();
   const goToRestrooms = (id) => {
     navigate(`/singleRestroom/${id}`);
   };
 
+  // ----- code to handle page refresh issue -----------
+  // if (!userData.savedRestrooms) {
+  //   return (
+  //     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
+  //     <CssBaseline />
+  //     </Paper>
+  //   )
+  // }
+  
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
       <CssBaseline />
@@ -63,7 +72,8 @@ export default function SavedRestroom() {
           <CardContent>
             <Typography gutterBottom variant="h5">
               {/* Your Saved Restrooms: */}
-              { userData.savedRestrooms && userData.savedRestrooms.length===0? "No restroom has been saved yet!" : "Your Saved Restrooms:"}
+              {/* { userData.savedRestrooms && userData.savedRestrooms.length===0? "No restroom has been saved yet!" : "Your Saved Restrooms:"} */}
+              { userData?.savedRestrooms?.length > 0 ? "Your Saved Restrooms:" : "No restroom has been saved yet!"}
             </Typography>
             {userData.savedRestrooms?.map((restroom) => (
               <List key={restroom._id}>

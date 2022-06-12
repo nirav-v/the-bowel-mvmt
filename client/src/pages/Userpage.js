@@ -19,6 +19,19 @@ const styles = {
     backgroundPosition: "center",
     // height: 1300,
   },
+  divStyle: {
+    overflowY: "scroll",
+    // border: "1px solid red",
+    width: "500px",
+    // float: "left",
+    height: "500px",
+    position: "relative",
+    marginLeft: "auto",
+    marginRight: "auto",
+    backgroundColor: "#F9F9F9",
+    // color: "white",
+    // fontSize: "30px",
+  },
 };
 
 export default function Userpage() {
@@ -67,7 +80,9 @@ export default function Userpage() {
             <Typography gutterBottom variant="h5">
               Click on a restroom to view amenities and read reviews
             </Typography>
-            <NearbyRestroomList/>
+            <div style={styles.divStyle}>
+              <NearbyRestroomList />
+            </div>
           </CardContent>
         </Card>
       </Grid>
