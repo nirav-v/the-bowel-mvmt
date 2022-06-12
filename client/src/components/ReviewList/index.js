@@ -8,7 +8,7 @@ import Rating from "@mui/material/Rating";
 
 const ReviewList = ({ reviews = [] }) => {
   if (!reviews.length) {
-    return <h3>No Restroom Yet</h3>;
+    return <h3>No review for this restroom yet</h3>;
   }
 
   return (
