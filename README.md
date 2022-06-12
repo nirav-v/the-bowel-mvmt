@@ -1,42 +1,75 @@
-# MERN-GQL-START
+# THE-BOWEL-MVMT
 
-Boilerplate app for full-stack MERN app with Create React App client tool chain. Includes React, JWT authentication, Mongoose/MongoDB, Apollo Server/Client, and ExpressJS.
+## Description
 
-## Getting Started
+The Bowel Mvmt is an app for users who need to use the restroom but don't know where to find one nearby. By using the app, users will be asked to give permission to the app for their current location. Once allowed, the landing page will then generate a list of nearby restroom with average rating and some icons next to the restroom name. Icons include whether key/code is required to access, changing station is available, and if it is up to ADA standard. Users can read reviews and leave their own by loging in or signing up. If users enjoyed their short stay and would like to visit again, they can simply tap on the save button and the restroom will be added to their collection. Users not only can save restroom they loved, but can also add restroom that is not listed into our database.
 
-- Add a `.env` file to `server` directory to run locally. Use `server/.env.example` as a template.
+## User Story
 
-- `npm start` script: Production startup. Only runs backend server.
+As a person who needs to find a public restroom urgently, I want to know information about that restroom’s cleanliness and amenities beforehand, so that I know whether to stop or save time and drive to the next one.
 
-- `npm run develop` script: Uses `concurrently` to run the back-end with `nodemon` and launches the `create-react-app` development server for front-end development. `concurrently` runs these within the same terminal. Logging is tagged with `[server]` or `[client]`.
+As a person who likes to know about all restrooms that are readily available near me, I want to be able to add new ones I come across or see new ones that other users have added, so that I can find restrooms that aren’t listed on Google Maps
 
-- `npm run client` script: Launches the `create-react-app` development server for the client only. Will not start back-end.
+## Acceptance Criteria
 
-- `npm run server` script: Starts the back-end server with `nodemon` for easy development without launching the client.
+Given an application that helps to find public restroom  
+WHEN user visits the home page,  
+THEN user can click link to see nearby restrooms in a specified radius by allowing access to their location via an alert window  
+WHEN user is looking at the list of nearby restrooms,  
+THEN user can navigate to login or sign-up popup by clicking on either link in Navbar to create an account or log in with existing account  
+WHEN user signup a new account  
+THEN user needs to provide username, email, and password  
+WHEN user login to the account,  
+THEN user will see a list of restrooms nearby and a button to add new restroom at the top right corner, a button to view saved restrooms, and a log out button on the bottom of the page  
+WHEN viewing the list of restrooms,  
+THEN user can select one and view amenities/ reviews  
+WHEN user views a selected restroom  
+THEN they can continue to add a review, save the restroom, or go back to userpage OR logout  
+WHEN the user clicks the save button,  
+THEN the restroom gets added to their saved restrooms list  
+WHEN user selects add review button,  
+THEN a new popup form will be displayed, and user can select how many stars restroom should have, fill out a description/comments for additional details about the restroom and add pictures as a url  
+WHEN user clicks on add new restroom button,  
+THEN user will be redirected to a new page to add description, fill out the checkboxes with the following options: [key required, toilet paper available, diaper changing station, working flush, disabled person friendly], and add coordinates/location of the restroom  
+WHEN user clicks submit button,  
+THEN user will be redirected back to the view restroom list page
 
-- The `npm install` script: Installs all dependencies for root as wells as `client` and `server`.
+#
 
-- The `npm run build` script: Runs `create-react-app` build script to create client bundles and assets.
+# Technologies Used
 
-## Deploying to Heroku
+## CSS Framework
 
-- Requires a MongoDB server. MongoDB Atlas is a fairly easy choice for this requirement. Create an Atlas account and setup a database.
+Material UI
 
-- Add the following values to the Heroku config for the app:
+## Database/Models
 
-  - `SECRET` - used for signing and verifying tokens
-  - `TOKEN_EXP` - duration before token expires in milliseconds or a string
-    describing a time span. ([zeit/ms](https://github.com/vercel/ms))
-  - `MONGODB_URI` - used for connecting to MongoDB service
+MongoDB
 
-- Push your code to GitHub
+#
 
-- Connect your Heroku app with GitHub or push code directly to Heroku. (See [Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs))
+# Deployed Application
 
-## Apollo Server
+Heroku
 
-This project uses `apollo-server-express v 3.x` which means GraphQL Playground (deprecated) is not included. Instead, Apollo Server 3 uses [Apollo Studio](https://www.apollographql.com/docs/studio/) as a development tool for building your api. If you would like to use GraphQL Playground, refer to [this guide](https://www.apollographql.com/docs/apollo-server/migration/#graphql-playground) to enable the tool.
+#
 
-## Create React App
+## Homepage
 
-The client for this project is built with the `create-react-app` tool chain. The README file generated by `create-react-app` has been preserved. See [client/README.md](./client/README.md) for details about the tools.
+## Login Page
+
+## Sign Up Page
+
+## User Page
+
+## Nearby Restroom List Page (not yet login)
+
+## Add A Restroom Page
+
+## Saved Restroom Page
+
+## Restroom With View/Add Reviews Page
+
+#
+
+© 2022 IPee Addresses: Nirav Venkatesan, Qiling Deng, Christina Christiansen, Kevin Wang
