@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { Rating } from "@mui/material";
 import AccessibleIcon from "@mui/icons-material/Accessible";
 import BabyChangingStationIcon from "@mui/icons-material/BabyChangingStation";
@@ -33,9 +33,6 @@ const useCoords = () => {
 };
 
 export default function NearbyRestroomList() {
-  // we declare out restrooms state variable with an initial state of false which will later be set to our array of nearby restrooms
-  //const [restrooms, setRestroomState] = useState(false);
-
   // we have getUserLocation returning a promise that we can access the coordinates from
   const userCoords = useCoords();
 
@@ -51,7 +48,7 @@ export default function NearbyRestroomList() {
       getNearbyRestrooms({
         variables: { lat, lon },
       });
-      console.count("fetching");
+      // console.count("fetching");
     }
   }, [userCoords.coords, getNearbyRestrooms]);
 
@@ -68,9 +65,28 @@ export default function NearbyRestroomList() {
   if (loading || !data) {
     return <h2>Searching NEARBY RESTROOMS...</h2>;
   }
-  const restrooms = data.nearbyRestrooms;
 
-  console.log(restrooms);
+  const restrooms = data.nearbyRestrooms;
+ 
+  // function with logic for avgRating to return avg rating of a restroom
+  const getAvgRating =  (restroom) => {
+    try {
+        let reviews = restroom.reviews;
+
+        if (!reviews.length){
+          return 0;
+        }
+          let total = 0;
+          for (let i = 0; i < reviews.length; i++) {
+            total += reviews[i].rating;
+          }
+          var avgRating = total / reviews.length; // had to use var for avgRating to be globally available outside the conditional
+       
+          return avgRating
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -82,11 +98,11 @@ export default function NearbyRestroomList() {
               {restroom.areaDescription}
             </Link>
             <p>
-              Rating:{" "}
+              Rating: 
               <Rating
-                name="half-rating read-only"
-                defaultValue={4}
-                precision={0.5}
+                name="half-rating"
+                 defaultValue={getAvgRating(restroom)}
+                precision={0.1}
                 readOnly
               />
               {restroom.adaAccessible ? <AccessibleIcon /> : null}
