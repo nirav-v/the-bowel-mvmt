@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { Rating } from "@mui/material";
 import AccessibleIcon from "@mui/icons-material/Accessible";
 import BabyChangingStationIcon from "@mui/icons-material/BabyChangingStation";
@@ -33,9 +33,6 @@ const useCoords = () => {
 };
 
 export default function NearbyRestroomList() {
-  // we declare out restrooms state variable with an initial state of false which will later be set to our array of nearby restrooms
- const [restroomRating, setRestroomRating] = useState(null)
-
   // we have getUserLocation returning a promise that we can access the coordinates from
   const userCoords = useCoords();
 
@@ -51,10 +48,9 @@ export default function NearbyRestroomList() {
       getNearbyRestrooms({
         variables: { lat, lon },
       });
-      console.count('fetching')
+      console.count("fetching");
     }
   }, [userCoords.coords, getNearbyRestrooms]);
-
 
   if (userCoords.pending) {
     return <h2>your location is needed to find nearby restrooms</h2>;
@@ -62,8 +58,7 @@ export default function NearbyRestroomList() {
 
   if (error || userCoords.error) {
     alert("unexpected server error, redirecting to home page...");
-     return <Navigate to="/" />;
-  
+    return <Navigate to="/" />;
   }
 
   // show loading message until our array of restrooms is ready to render
@@ -71,25 +66,36 @@ export default function NearbyRestroomList() {
     return <h2>Searching NEARBY RESTROOMS...</h2>;
   }
 
-const restrooms = data.nearbyRestrooms;
-console.log(restrooms)
-// try adding logic for avgRatng to show for each restroom on list
+  const restrooms = data.nearbyRestrooms;
+  console.log(restrooms);
+
+  // try adding logic for avgRatng to show for each restroom on list
+  //  const avgRatingsArray = []
+  const getAvgRating =  (restroom) => {
+    try {
+        let reviews = restroom.reviews;
+
+        if (!reviews.length){
+          return 0;
+        }
+          let total = 0;
+          for (let i = 0; i < reviews.length; i++) {
+            total += reviews[i].rating;
+          }
+          var avgRating = total / reviews.length; // had to use var for avgRating to be globally available outside the conditional
+       
+          // console.log(avgRating)
+          return avgRating
+      // avgRatingsArray.push(rating);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 for (let i =0; i < restrooms.length; i++){
-  var reviewArray = restrooms[i].reviews
-  // console.log(reviewArray)
-  if (reviewArray.length){
-  let total = 0;
-     for (let i = 0; i < reviewArray.length; i++) {
-       total += reviewArray[i].rating;
-      //  console.log(total)
-     }
-     var rating = total / reviewArray.length
-} else {
-  rating = null
-}
-console.log(restrooms[i].areaDescription, rating)
+  console.log(getAvgRating(restrooms[i]))
 }
 
+  //console.log(avgRatingsArray)
 
   return (
     <div>
@@ -101,10 +107,14 @@ console.log(restrooms[i].areaDescription, rating)
               {restroom.areaDescription}
             </Link>
             <p>
-              Rating:{" "}
-
-              <Rating name="half-rating" defaultValue={rating} precision={0.5} readOnly/>
-              
+              Rating: {/* {ratingsArray.map( rating => ( ))} */}
+              <Rating
+                name="half-rating"
+                 defaultValue={getAvgRating(restroom)}
+                // defaultValue={1}
+                precision={0.1}
+                readOnly
+              />
               {restroom.adaAccessible ? <AccessibleIcon /> : null}
               {restroom.changingStation ? <BabyChangingStationIcon /> : null}
               {restroom.keyRequired ? <KeyIcon /> : null}
