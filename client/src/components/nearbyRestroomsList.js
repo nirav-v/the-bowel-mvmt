@@ -89,7 +89,7 @@ export default function NearbyRestroomList() {
   };
 
   return (
-    <div>
+    <div style={{maxHeight: "50vh", overflow: 'auto', backgroundColor: "#F9F9F9", fontSize: "20px"}}>
       {restrooms &&
         restrooms.map((restroom) => (
           <div key={restroom._id}>
