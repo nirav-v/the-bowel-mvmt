@@ -13,7 +13,7 @@
     "react": "cd client && npm start",
     "server": "cd server && npm run watch",
     "install": "cd server && npm i && cd ../client && npm i",
-      "seed": "cd server && npm run seed",
+    "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
   "keywords": [],
@@ -23,6 +23,7 @@
     "concurrently": "^6.4.0"
   },
   "dependencies": {
+    "react-icons": "^4.4.0",
     "react-native": "^0.68.2"
   }
 }
