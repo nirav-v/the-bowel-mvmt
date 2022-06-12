@@ -8,6 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Rating from '@mui/material/Rating';
+import Box from '@mui/material/Box';
 
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
@@ -42,7 +43,7 @@ export default function SingleRestroom() {
    const reviews = data?.singleRestroom.reviews || {};
    console.log(reviews)
 
-  // // logic for getting average rating
+  // logic for getting average rating
   if (reviews.length) {
     let total = 0;
     for (let i = 0; i < reviews.length; i++) {
@@ -139,14 +140,16 @@ export default function SingleRestroom() {
                     }}
                   >
                     {restroom.areaDescription}
+                  </blockquote>
+                  <Box textAlign='center'>
                     <Button
                       variant="contained"
                       sx={{ textTransform: "capitalize" }}
                       onClick={() => handleSaveRestroom(restroom._id)}
                     >
-                      {"Save Restroom"}
+                      Save Restroom
                     </Button>
-                  </blockquote>
+                  </Box>
                 </div>
                 <div className="my-5">
                   <ReviewList reviews={restroom.reviews} />
