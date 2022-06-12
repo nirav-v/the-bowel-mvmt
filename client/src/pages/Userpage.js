@@ -19,19 +19,6 @@ const styles = {
     backgroundPosition: "center",
     // height: 1300,
   },
-  divStyle: {
-    overflowY: "scroll",
-    // border: "1px solid red",
-    width: "500px",
-    // float: "left",
-    height: "500px",
-    position: "relative",
-    marginLeft: "auto",
-    marginRight: "auto",
-    backgroundColor: "#F9F9F9",
-    // color: "white",
-    // fontSize: "30px",
-  },
 };
 
 export default function Userpage() {
@@ -47,7 +34,11 @@ export default function Userpage() {
         style={{ minHeight: "100vh" }}
       >
         <h1>Welcome {isLoggedIn ? user.username : "Guest"}!</h1>
-        <Stack spacing={13} direction="row" sx={{ my: 5, mx: 3 }}>
+        <Stack
+          spacing={{ xs: 3, sm: 6, md: 12 }}
+          direction={{ xs: "column", sm: "row" }}
+          sx={{ my: 5, mx: 3 }}
+        >
           <Button
             variant="contained"
             size="large"
@@ -57,6 +48,7 @@ export default function Userpage() {
             <FavoriteIcon sx={{ mx: 1 }} />
             View Saved Restroom
           </Button>
+
           <Button
             variant="contained"
             size="large"
@@ -77,12 +69,10 @@ export default function Userpage() {
           }}
         >
           <CardContent>
-            <Typography gutterBottom variant="h5">
+            <Typography gutterBottom variant="h5" sx={{ mb: 2 }}>
               Click on a restroom to view amenities and read reviews
             </Typography>
-            <div style={styles.divStyle}>
-              <NearbyRestroomList />
-            </div>
+            <NearbyRestroomList />
           </CardContent>
         </Card>
       </Grid>
