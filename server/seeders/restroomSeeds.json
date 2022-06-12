@@ -12,13 +12,13 @@
       {
         "reviewText": "pretty clean, smelled good",
         "rating": 4,
-        "username": "andy",
+        "username": "andy34",
         "userId": "62a164ad96ebb956465ced3e"
       },
       {
         "reviewText": "the toilets work",
         "rating": 3.5,
-        "username": "andy",
+        "username": "yung_johnson",
         "userId": "62a164ad96ebb956465ced3e"
       }
     ]
@@ -36,13 +36,13 @@
       {
         "reviewText": "very rude manager would not let me use it",
         "rating": 1,
-        "username": "andy",
+        "username": "Mike17",
         "userId": "62a164ad96ebb956465ced3e"
       },
       {
         "reviewText": "It was ok for my needs but not as clean as I hoped",
         "rating": 3,
-        "username": "andy",
+        "username": "kate",
         "userId": "62a164ad96ebb956465ced3e"
       }
     ]
@@ -72,7 +72,7 @@
     ]
   },
   {
-    "areaDescription": "Chuze Fitness Santee Restroom",
+    "areaDescription": "Chuze Fitness Restroom on Mission Gorge blvd",
     "location": {
       "type": "Point",
       "coordinates": [-116.98676197054745, 32.84314867994577]
@@ -84,9 +84,124 @@
       {
         "reviewText": "You have to be a member to use it. The mens restroom is usually only clean in the morning but they do not maintain it throughout the day",
         "rating": 3,
-        "username": "andy",
+        "username": "jerry",
         "userId": "62a10d722a19dba7c0d5086b"
+      }
+    ]
+  },
+  {
+    "areaDescription": "Neighbor-House Restroom",
+    "location": {
+      "type": "Point",
+      "coordinates": [-117.01305118700688, 32.802331633374614]
+    },
+    "changingStation": false,
+    "keyRequired": true,
+    "adaAccessible": false,
+    "reviews": [
+      {
+        "reviewText": "Nice house and really nice backyard. Their bathroom is clean and smells good if you light the candle. The only thing I'm not happy about is their toilet, they do not have the butt warmer electric toilet seat.",
+        "rating": 4,
+        "username": "kevin",
+        "userId": "62a38490936dc4a82b2ee62a"
+      }
+    ]
+  },
+  {
+    "areaDescription": "Your Nearby Bush",
+    "location": {
+      "type": "Point",
+      "coordinates": [ -117.26164976500547, 32.937290857633045]
+    },
+    "changingStation": false,
+    "keyRequired": false,
+    "adaAccessible": false,
+    "reviews": [
+      {
+        "reviewText": "Many flys, liquid splash on shoes, and most importantly, where's the toilet paper?",
+        "rating": 1,
+        "username": "kevin",
+        "userId": "62a38490936dc4a82b2ee62a"
+      }
+    ]
+  },
+  {
+    "areaDescription": "SDSU 2nd Floor Life Sciences Building Mens Restroom",
+    "location": {
+      "type": "Point",
+      "coordinates": [-117.0715825258841, 32.77797258650407]
+    },
+    "changingStation": false,
+    "keyRequired": false,
+    "adaAccessible": true,
+    "reviews": [
+      {
+        "reviewText": "Pretty solid location if your're in a rush before class on the north side of campus. Its kept pretty clean and not used by too many people",
+        "rating": 4.5,
+        "username": "Wesley58",
+        "userId": "62a38490936dc4a82b2ee62a"
+      }
+    ]
+  },
+  {
+    "areaDescription": "UCSD Engineering 3rd floor mens room",
+    "location": {
+      "type": "Point",
+      "coordinates": [-117.23547201233083, 32.88157792478085]
+    },
+    "changingStation": false,
+    "keyRequired": false,
+    "adaAccessible": true,
+    "reviews": [
+      {
+        "reviewText": "Avoid this place at all costs. Seems to never be maintained and always smells very bad every time I go",
+        "rating": 4.5,
+        "username": "smart-dude62",
+        "userId": "62a38490936dc4a82b2ee62a"
+      }
+    ]
+  },
+  {
+    "areaDescription": "Encinitas Community Park Restroom",
+    "location": {
+      "type": "Point",
+      "coordinates": [-117.28252998764762, 33.03433609100969]
+    },
+    "changingStation": true,
+    "keyRequired": false,
+    "adaAccessible": true,
+    "reviews": [
+      {
+        "reviewText": "Pretty average restrooms that meet basic requirements. Sometimes they are out of toilet paper so be careful. Changing stations are a plus for those with babies",
+        "rating": 3.5,
+        "username": "daniel-p",
+        "userId": "62a38490936dc4a82b2ee62a"
+      },
+      {
+        "reviewText": "I am stuck in here with no toilet paper. Somebody please see this and help",
+        "rating": 3.5,
+        "username": "tony",
+        "userId": "62a38490936dc4a82b2ee62a"
+      }
+    ]
+  },
+  {
+    "areaDescription": "Vons in Encinitas Plaza",
+    "location": {
+      "type": "Point",
+      "coordinates": [-117.28252998764762, 33.03433609100969]
+    },
+    "changingStation": true,
+    "keyRequired": false,
+    "adaAccessible": true,
+    "reviews": [
+      {
+        "reviewText": "It's pretty decent but sometimes the staff give you dirty looks when you go in.",
+        "rating": 2,
+        "username": "bobe",
+        "userId": "62a38490936dc4a82b2ee62a"
       }
     ]
   }
 ]
+
