@@ -35,12 +35,13 @@ export default function Userpage() {
       >
         <h1
           style={{
-            boxShadow:
-              "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-            borderRadius: "15px",
-            padding: "5px",
+            textShadow: "-3px -1px 3px black",
             color: "rgb(30, 144, 255)",
-            background: "rgba(255, 255, 255, 0.5)",
+            // boxShadow:
+            //   "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
+            borderRadius: "10px",
+            padding: "1px 5px",
+            background: "rgba(255, 255, 255, 0.3)",
           }}
         >
           Welcome {isLoggedIn ? user.username : "Guest"}!
