@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import NearbyRestroomList from "../components/nearbyRestroomsList";
 
 const styles = {
   paperContainer: {
@@ -33,7 +34,11 @@ export default function Userpage() {
         style={{ minHeight: "100vh" }}
       >
         <h1>Welcome {isLoggedIn ? user.username : "Guest"}!</h1>
-        <Stack spacing={13} direction="row" sx={{ my: 5, mx: 3 }}>
+        <Stack
+          spacing={{ xs: 3, sm: 6, md: 12 }}
+          direction={{ xs: "column", sm: "row" }}
+          sx={{ my: 5, mx: 3 }}
+        >
           <Button
             variant="contained"
             size="large"
@@ -43,6 +48,7 @@ export default function Userpage() {
             <FavoriteIcon sx={{ mx: 1 }} />
             View Saved Restroom
           </Button>
+
           <Button
             variant="contained"
             size="large"
@@ -59,13 +65,14 @@ export default function Userpage() {
             padding: "20px 5px",
             borderRadius: "16px",
             opacity: 0.9,
+            marginBottom: 30,
           }}
         >
           <CardContent>
-            <Typography gutterBottom variant="h5">
+            <Typography gutterBottom variant="h5" sx={{ mb: 2 }}>
               Click on a restroom to view amenities and read reviews
             </Typography>
-            {/* ---- put restroom list component here ----- */}
+            <NearbyRestroomList />
           </CardContent>
         </Card>
       </Grid>

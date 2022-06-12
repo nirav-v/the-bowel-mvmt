@@ -12,6 +12,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+
+import { ME } from "../util/queries";
 
 const styles = {
   paperContainer: {
@@ -23,29 +27,27 @@ const styles = {
 };
 
 export default function SavedRestroom() {
-  const savedRRs = [
-    {
-      id: 1,
-      restroomName: "Restroom1",
-      restroomId: "1",
-    },
-    {
-      id: 2,
-      restroomName: "Restroom2",
-      restroomId: "2",
-    },
-    {
-      id: 3,
-      restroomName: "Restroom3",
-      restroomId: "3",
-    },
-  ];
+  const { loading, data, error } = useQuery(ME);
+
+  const userData = data?.me || {};
+
+  console.log(userData);
+  console.log(userData.savedRestrooms);
 
   const navigate = useNavigate();
   const goToRestrooms = (id) => {
     navigate(`/singleRestroom/${id}`);
   };
 
+  // ----- code to handle page refresh issue -----------
+  // if (!userData.savedRestrooms) {
+  //   return (
+  //     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
+  //     <CssBaseline />
+  //     </Paper>
+  //   )
+  // }
+  
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
       <CssBaseline />
@@ -63,24 +65,28 @@ export default function SavedRestroom() {
             padding: "20px 5px",
             borderRadius: "16px",
             opacity: 0.9,
+            marginBottom: 30,
+            marginTop: 30,
           }}
         >
           <CardContent>
             <Typography gutterBottom variant="h5">
-              Your Saved Restrooms:
+              {/* Your Saved Restrooms: */}
+              {/* { userData.savedRestrooms && userData.savedRestrooms.length===0? "No restroom has been saved yet!" : "Your Saved Restrooms:"} */}
+              { userData?.savedRestrooms?.length > 0 ? "Your Saved Restrooms:" : "No restroom has been saved yet!"}
             </Typography>
-            {savedRRs.map(({ restroomName, restroomId, id }) => (
-              <List key={id}>
+            {userData.savedRestrooms?.map((restroom) => (
+              <List key={restroom._id}>
                 <ListItem disablePadding>
                   <ListItemButton
                     onClick={() => {
-                      goToRestrooms(restroomId);
+                      goToRestrooms(restroom._id);
                     }}
                   >
                     <ListItemIcon>
                       <FavoriteIcon />
                     </ListItemIcon>
-                    <ListItemText primary={restroomName} />
+                    <ListItemText primary={restroom.areaDescription} />
                   </ListItemButton>
                 </ListItem>
               </List>
