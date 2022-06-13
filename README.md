@@ -60,19 +60,35 @@ THEN user will be redirected back to the view restroom list page
 
 ## Homepage
 
-## Login Page
-
-## Sign Up Page
-
-## User Page
+![homepage](./client/src/images/homepage.png)
 
 ## Nearby Restroom List Page (not yet login)
 
+![restroomList](<./client/src/images/restroomList(notLogin).png>)
+
+## Login Page
+
+![loginpage](./client/src/images/loginpage.png)
+
+## Sign Up Page
+
+![signuppage](./client/src/images/signuppage.png)
+
+## User Page
+
+![userpage](./client/src/images/userpage.png)
+
 ## Add A Restroom Page
+
+![addRestroom](./client/src/images/addrestroompage.png)
 
 ## Saved Restroom Page
 
+![savedRestroom](./client/src/images/savedRestroompage.png)
+
 ## Restroom With View/Add Reviews Page
+
+![viewAddpage](./client/src/images/reviewpage.png)
 
 #
 
