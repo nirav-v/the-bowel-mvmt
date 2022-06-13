@@ -44,7 +44,11 @@ export default function RestroomsNearYou() {
         direction="column"
         style={{ minHeight: "100vh" }}
       >
-        <Alert variant="filled" severity="info" sx={{ mb: 2 }}>
+        <Alert
+          variant="filled"
+          severity="info"
+          sx={{ mb: 2, fontSize: "20px" }}
+        >
           Login or Sign up to add a new restroom OR leave a review
         </Alert>
         <Card

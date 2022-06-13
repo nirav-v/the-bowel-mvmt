@@ -9,6 +9,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
 
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
@@ -71,17 +72,6 @@ export default function SingleRestroom() {
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
       <CssBaseline />
-      <Typography
-        gutterBottom
-        variant="h5"
-        sx={{ fontWeight: "bold", py: 2 }}
-        style={{
-          textAlignVertical: "center",
-          textAlign: "center",
-        }}
-      >
-        View restroom and reviews
-      </Typography>
       <Grid
         container
         justifyContent="center"
@@ -89,6 +79,16 @@ export default function SingleRestroom() {
         direction="column"
         style={{ minHeight: "100vh" }}
       >
+        <Alert
+          icon={false}
+          severity="warning"
+          style={{
+            fontSize: "20px",
+            margin: "15px",
+          }}
+        >
+          <strong>View Restroom And Reviews</strong>
+        </Alert>
         <Card
           style={{
             maxWidth: 650,
@@ -99,23 +99,25 @@ export default function SingleRestroom() {
           }}
         >
           <CardContent>
-            <div>
+            <div style={{ textAlign: "center" }}>
               <Typography gutterBottom>
-                Location: {restroom.areaDescription}
+                <strong>Location: </strong>
+                {restroom.areaDescription}
               </Typography>
               <Typography gutterBottom>
-                Key/Code Required:{" "}
+                <strong>Key/Code Required: </strong>{" "}
                 {restroom.keyRequired === true ? "Yes" : "No"}
               </Typography>
               <Typography gutterBottom>
-                Changing Station:{" "}
+                <strong>Changing Station: </strong>{" "}
                 {restroom.changingStation === true ? "Yes" : "No"}
               </Typography>
               <Typography gutterBottom>
-                ADA Accessible: {restroom.adaAccessible === true ? "Yes" : "No"}
+                <strong>ADA Accessible: </strong>
+                {restroom.adaAccessible === true ? "Yes" : "No"}
               </Typography>
               <Typography gutterBottom>
-                Average Rating:{" "}
+                <strong>Average Rating: </strong>{" "}
                 {avgRating ? avgRating + " out of 5 stars" : "No Reviews Yet"}
               </Typography>
               <Rating
@@ -131,13 +133,14 @@ export default function SingleRestroom() {
                   <blockquote
                     className="p-4"
                     style={{
-                      fontSize: "1.5rem",
+                      fontSize: "30px",
                       fontStyle: "italic",
                       border: "2px dotted #1a1a1a",
                       lineHeight: "1.5",
+                      textAlign: "center",
                     }}
                   >
-                    {restroom.areaDescription}
+                    <strong>{restroom.areaDescription}</strong>
                   </blockquote>
                   <Box textAlign="center">
                     <Button
