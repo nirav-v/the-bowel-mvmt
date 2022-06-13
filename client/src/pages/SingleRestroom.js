@@ -7,8 +7,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Rating from '@mui/material/Rating';
-import Box from '@mui/material/Box';
+import Rating from "@mui/material/Rating";
+import Box from "@mui/material/Box";
 
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
@@ -18,16 +18,15 @@ import ReviewList from "../components/ReviewList";
 
 import { SINGLERESTROOM } from "../util/queries";
 import { SAVE_RESTROOM } from "../util/mutations";
-import { removeClientSetsFromDocument } from "@apollo/client/utilities";
+// import { removeClientSetsFromDocument } from "@apollo/client/utilities";
 import AddReviewForm from "../components/AddReviewForm/index";
-import { VariablesInAllowedPositionRule } from "graphql";
+// import { VariablesInAllowedPositionRule } from "graphql";
 
 const styles = {
   paperContainer: {
     backgroundImage: `url(${rolls})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    // height: 1300,
   },
 };
 
@@ -39,9 +38,9 @@ export default function SingleRestroom() {
   });
 
   const restroom = data?.singleRestroom || {};
-  console.log(restroom)
-   const reviews = data?.singleRestroom.reviews || {};
-   console.log(reviews)
+  console.log(restroom);
+  const reviews = data?.singleRestroom.reviews || {};
+  console.log(reviews);
 
   // logic for getting average rating
   if (reviews.length) {
@@ -65,8 +64,6 @@ export default function SingleRestroom() {
       alert("Error, please try again later");
     }
   };
-
-  // const [value, setValue] = React.useState(0);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -93,7 +90,6 @@ export default function SingleRestroom() {
         style={{ minHeight: "100vh" }}
       >
         <Card
-          // style={{ maxWidth: 650, padding: "20px 5px", borderRadius: "16px", backgroundColor: 'transparent', }}
           style={{
             maxWidth: 650,
             padding: "20px 5px",
@@ -119,16 +115,18 @@ export default function SingleRestroom() {
                 ADA Accessible: {restroom.adaAccessible === true ? "Yes" : "No"}
               </Typography>
               <Typography gutterBottom>
-                Average Rating: {avgRating? avgRating + " out of 5 stars" : "No Reviews Yet"}
+                Average Rating:{" "}
+                {avgRating ? avgRating + " out of 5 stars" : "No Reviews Yet"}
               </Typography>
-              <Rating name="read-only" value={avgRating? avgRating: null} precision={0.1} readOnly />
+              <Rating
+                name="read-only"
+                value={avgRating ? avgRating : null}
+                precision={0.1}
+                readOnly
+              />
             </div>
-            {/* <form onSubmit={handleSubmit}> */}
             <form>
               <div className="my-3">
-                {/* <h3 className="card-header bg-dark text-light p-2 m-0">
-                  User reviews here
-                </h3> */}
                 <div className="bg-light py-4">
                   <blockquote
                     className="p-4"
@@ -141,7 +139,7 @@ export default function SingleRestroom() {
                   >
                     {restroom.areaDescription}
                   </blockquote>
-                  <Box textAlign='center'>
+                  <Box textAlign="center">
                     <Button
                       variant="contained"
                       sx={{ textTransform: "capitalize" }}
