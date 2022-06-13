@@ -48,7 +48,18 @@ export default function Home() {
         style={{ minHeight: "100vh" }}
       >
         <div style={{ textAlignVertical: "center", textAlign: "center" }}>
-          <h1>Welcome {isLoggedIn ? user.username : "Guest"}!</h1>
+          <h1
+            style={{
+              textShadow: "-2px -1px 3px pink",
+              color: "rgb(255,255,51)",
+              borderRadius: "10px",
+              padding: "1px 5px",
+              background: "rgba(255, 255, 255, 0.3)",
+              fontSize: "50px",
+            }}
+          >
+            Welcome {isLoggedIn ? user.username : "Guest"}!
+          </h1>
           <Card
             style={{
               maxWidth: 650,

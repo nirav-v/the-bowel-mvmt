@@ -98,11 +98,28 @@ export default function NearbyRestroomList() {
     >
       {restrooms &&
         restrooms.map((restroom) => (
-          <div key={restroom._id}>
-            <Link to={`/singleRestroom/${restroom._id}`}>
+          <div
+            style={{
+              marginLeft: "10px",
+            }}
+            key={restroom._id}
+          >
+            <Link
+              style={{
+                textDecoration: "none",
+                fontSize: "25px",
+                fontWeight: "bold",
+                color: "rgb(0,127,255)",
+              }}
+              to={`/singleRestroom/${restroom._id}`}
+            >
               {restroom.areaDescription}
             </Link>
-            <p>
+            <p
+              style={{
+                marginTop: "0px",
+              }}
+            >
               Rating:
               <Rating
                 name="half-rating"

@@ -34,11 +34,12 @@ export default function Userpage() {
       >
         <h1
           style={{
-            textShadow: "-2px -1px 3px black",
-            color: "rgb(30, 144, 255)",
+            textShadow: "-2px -1px 3px rgb(45, 90, 39)",
+            color: "rgb(135,206,250)",
             borderRadius: "10px",
             padding: "1px 5px",
             background: "rgba(255, 255, 255, 0.3)",
+            fontSize: "50px",
           }}
         >
           Welcome {isLoggedIn ? user.username : "Guest"}!

@@ -34,8 +34,14 @@ const ReviewList = ({ reviews = [] }) => {
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>Review: {review.reviewText}</Typography>
-                  <Typography>Rating: {review.rating + " stars"}</Typography>
+                  <Typography sx={{ mb: 2 }}>
+                    <strong>Review: </strong>
+                    {review.reviewText}
+                  </Typography>
+                  <Typography>
+                    <strong>Rating: </strong>
+                    {review.rating + " stars"}
+                  </Typography>
                   <Rating name="read-only" value={review.rating} readOnly />
                 </AccordionDetails>
               </Accordion>
