@@ -38,19 +38,23 @@ THEN user will be redirected back to the view restroom list page
 
 # Technologies Used
 
-## CSS Framework
+## React UI Components Library
 
-Material UI
+- React
+- Material UI
 
 ## Database/Models
 
-MongoDB
+- MongoDB
+- GraphQL API
+- Node.js
+- Express.js
 
 #
 
 # Deployed Application
 
-Heroku
+[Heroku](https://ancient-refuge-47910.herokuapp.com/)
 
 #
 
@@ -72,4 +76,4 @@ Heroku
 
 #
 
-© 2022 IPee Addresses: Nirav Venkatesan, Qiling Deng, Christina Christiansen, Kevin Wang
+© 2022 IPee Addresses: [Nirav Venkatesan](https://github.com/nirav-v), [Qiling Deng](https://github.com/qd9069), [Christina Christiansen](https://github.com/christinaa126), [Kevin Wang](https://github.com/ohdeer31)
