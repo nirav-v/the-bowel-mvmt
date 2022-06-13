@@ -49,6 +49,7 @@ export default function Navbar4() {
                       my: 0,
                       color: "black",
                       display: "block",
+                      fontWeight: "bold"
                     }}
                     // style={{ verticalAlign: "middle", color: "black" }}
                     size="large"
@@ -63,6 +64,7 @@ export default function Navbar4() {
                       my: 0,
                       color: "black",
                       display: "block",
+                      fontWeight: "bold"
                     }}
                     // style={{ verticalAlign: "middle", color: "black" }}
                     size="large"
@@ -75,21 +77,21 @@ export default function Navbar4() {
               ) : (
                 <>
                   <Button
-                    sx={{ my: 2, color: "black", display: "block" }}
+                    sx={{ my: 2, color: "black", display: "block", fontWeight: "bold" }}
                     size="large"
                     href="/"
                   >
                     Home
                   </Button>
                   <Button
-                    sx={{ my: 2, color: "black", display: "block" }}
+                    sx={{ my: 2, color: "black", display: "block", fontWeight: "bold" }}
                     size="large"
                     href="/login"
                   >
                     Login
                   </Button>
                   <Button
-                    sx={{ my: 2, color: "black", display: "block" }}
+                    sx={{ my: 2, color: "black", display: "block", fontWeight: "bold" }}
                     size="large"
                     href="/signup"
                   >
