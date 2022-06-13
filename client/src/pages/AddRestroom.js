@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, Navigate } from "react-router-dom";
+// import { useLocation, Navigate } from "react-router-dom";
 import { useAuth } from "../util/auth";
 import rolls from "../images/toilet_paper_rolls.jpeg";
 import Paper from "@mui/material/Paper";
@@ -14,14 +14,12 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useMutation } from "@apollo/client";
 import { CREATE_RESTROOM } from "../util/mutations";
-// import Alert from '@mui/material/Alert';
 
 const styles = {
   paperContainer: {
     backgroundImage: `url(${rolls})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    // height: 1300,
   },
 };
 
@@ -45,7 +43,6 @@ export default function AddRestroom() {
 
   useEffect(() => {
     if (error) {
-      // TODO: replace window alert with custom alert
       alert(error);
     }
   }, [error]);
@@ -110,7 +107,6 @@ export default function AddRestroom() {
         style={{ minHeight: "100vh" }}
       >
         <Card
-          // style={{ maxWidth: 650, padding: "20px 5px", borderRadius: "16px", backgroundColor: 'transparent', }}
           style={{
             maxWidth: 650,
             padding: "20px 5px",
@@ -142,7 +138,6 @@ export default function AddRestroom() {
                     disabled={loading}
                     value={formState.latitude}
                     onChange={handleInputChange}
-                    // type="number"
                     inputProps={{ inputMode: "numeric", pattern: "[0-9.-]*" }}
                     id="margin-normal"
                     margin="normal"
@@ -156,7 +151,6 @@ export default function AddRestroom() {
                     disabled={loading}
                     value={formState.longitude}
                     onChange={handleInputChange}
-                    // type="number"
                     inputProps={{ inputMode: "numeric", pattern: "[0-9.-]*" }}
                   />
                 </Grid>
@@ -170,7 +164,6 @@ export default function AddRestroom() {
                     Give this restroom a name
                   </Typography>
                   <TextField
-                    // label="Location"
                     placeholder="Enter area description, like store, gas station, etc."
                     fullWidth
                     required
@@ -213,7 +206,6 @@ export default function AddRestroom() {
                     type="submit"
                     disabled={loading}
                   >
-                    {/* Submit */}
                     {loading ? "Loading..." : "Submit"}
                   </Button>
                 </Grid>

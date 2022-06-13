@@ -12,7 +12,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 
 import { ME } from "../util/queries";
@@ -22,7 +22,6 @@ const styles = {
     backgroundImage: `url(${rolls})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    // height: 1300,
   },
 };
 
@@ -47,7 +46,7 @@ export default function SavedRestroom() {
   //     </Paper>
   //   )
   // }
-  
+
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
       <CssBaseline />
@@ -59,7 +58,6 @@ export default function SavedRestroom() {
         style={{ minHeight: "100vh" }}
       >
         <Card
-          // style={{ maxWidth: 650, padding: "20px 5px", borderRadius: "16px", backgroundColor: 'transparent', }}
           style={{
             maxWidth: 650,
             padding: "20px 5px",
@@ -71,9 +69,9 @@ export default function SavedRestroom() {
         >
           <CardContent>
             <Typography gutterBottom variant="h5">
-              {/* Your Saved Restrooms: */}
-              {/* { userData.savedRestrooms && userData.savedRestrooms.length===0? "No restroom has been saved yet!" : "Your Saved Restrooms:"} */}
-              { userData?.savedRestrooms?.length > 0 ? "Your Saved Restrooms:" : "No restroom has been saved yet!"}
+              {userData?.savedRestrooms?.length > 0
+                ? "Your Saved Restrooms:"
+                : "No restroom has been saved yet!"}
             </Typography>
             {userData.savedRestrooms?.map((restroom) => (
               <List key={restroom._id}>

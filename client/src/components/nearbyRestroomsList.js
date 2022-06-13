@@ -48,7 +48,6 @@ export default function NearbyRestroomList() {
       getNearbyRestrooms({
         variables: { lat, lon },
       });
-      // console.count("fetching");
     }
   }, [userCoords.coords, getNearbyRestrooms]);
 
@@ -67,41 +66,47 @@ export default function NearbyRestroomList() {
   }
 
   const restrooms = data.nearbyRestrooms;
- 
-  // function with logic for avgRating to return avg rating of a restroom
-  const getAvgRating =  (restroom) => {
-    try {
-        let reviews = restroom.reviews;
 
-        if (!reviews.length){
-          return 0;
-        }
-          let total = 0;
-          for (let i = 0; i < reviews.length; i++) {
-            total += reviews[i].rating;
-          }
-          var avgRating = total / reviews.length; // had to use var for avgRating to be globally available outside the conditional
-       
-          return avgRating
+  // function with logic for avgRating to return avg rating of a restroom
+  const getAvgRating = (restroom) => {
+    try {
+      let reviews = restroom.reviews;
+
+      if (!reviews.length) {
+        return 0;
+      }
+      let total = 0;
+      for (let i = 0; i < reviews.length; i++) {
+        total += reviews[i].rating;
+      }
+      var avgRating = total / reviews.length; // had to use var for avgRating to be globally available outside the conditional
+
+      return avgRating;
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div style={{maxHeight: "50vh", overflow: 'auto', backgroundColor: "#F9F9F9", fontSize: "20px"}}>
+    <div
+      style={{
+        maxHeight: "50vh",
+        overflow: "auto",
+        backgroundColor: "#F9F9F9",
+        fontSize: "20px",
+      }}
+    >
       {restrooms &&
         restrooms.map((restroom) => (
           <div key={restroom._id}>
             <Link to={`/singleRestroom/${restroom._id}`}>
-              {/* <h3>{restroom.areaDescription}</h3> */}
               {restroom.areaDescription}
             </Link>
             <p>
-              Rating: 
+              Rating:
               <Rating
                 name="half-rating"
-                 defaultValue={getAvgRating(restroom)}
+                defaultValue={getAvgRating(restroom)}
                 precision={0.1}
                 readOnly
               />

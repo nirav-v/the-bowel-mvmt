@@ -1,7 +1,7 @@
 import { useAuth } from "../util/auth";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 import blueToilets from "../images/blue_toilets.jpeg";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -20,13 +20,11 @@ const styles = {
     backgroundImage: `url(${blueToilets})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    // height: 1300,
   },
   divStyle: {
     overflowY: "scroll",
     border: "1px solid red",
     width: "500px",
-    // float: "left",
     height: "500px",
     position: "relative",
     marginLeft: "auto",
@@ -50,7 +48,6 @@ export default function Home() {
         style={{ minHeight: "100vh" }}
       >
         <div style={{ textAlignVertical: "center", textAlign: "center" }}>
-          {/* TODO: display logged in user's username */}
           <h1>Welcome {isLoggedIn ? user.username : "Guest"}!</h1>
           <Card
             style={{
@@ -61,27 +58,15 @@ export default function Home() {
             }}
           >
             <CardContent>
-              {/* <Typography> */}
-                <h3>
-                  <a href="./restroomsNearYou">Browse restrooms</a> near you and
-                  sign up to help us add to our database!
-                </h3>
-                <p>
-                  User must share location OR change location settings in
-                  browser
-                </p>
-              {/* </Typography> */}
+              <h3>
+                <a href="./restroomsNearYou">Browse restrooms</a> near you and
+                sign up to help us add to our database!
+              </h3>
+              <p>
+                User must share location OR change location settings in browser
+              </p>
             </CardContent>
           </Card>
-
-          {/* <h1>Welcome {isLoggedIn ? user.username : "Guest"}!</h1>
-          <hr />
-
-          <h3>
-            <a href="./restroomsNearYou">Browse restrooms</a> near you and sign
-            up to help us add to our database!
-          </h3>
-          <p>must share location OR change location settings in browser</p> */}
         </div>
       </Grid>
     </Paper>

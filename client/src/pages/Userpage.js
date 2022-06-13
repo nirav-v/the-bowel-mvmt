@@ -17,7 +17,6 @@ const styles = {
     backgroundImage: `url(${rolls})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    // height: 1300,
   },
 };
 
@@ -37,8 +36,6 @@ export default function Userpage() {
           style={{
             textShadow: "-2px -1px 3px black",
             color: "rgb(30, 144, 255)",
-            // boxShadow:
-            //   "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px",
             borderRadius: "10px",
             padding: "1px 5px",
             background: "rgba(255, 255, 255, 0.3)",

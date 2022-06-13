@@ -95,9 +95,7 @@ export const AuthProvider = ({ children }) => {
   const login = async ({ email, password }) => {
     dispatch({ type: LOADING });
     try {
-      // TODO: implement improved validation.
       if (!email || !password) {
-        // TODO: implement improved error message.
         throw new Error("Auth error. Invalid parameter received.");
       }
       const { data } = await loginUser({ variables: { email, password } });
@@ -111,9 +109,7 @@ export const AuthProvider = ({ children }) => {
   const signup = async ({ email, password, username }) => {
     dispatch({ type: LOADING });
     try {
-      // TODO: implement improved validation.
       if (!email || !password || !username) {
-        // TODO: implement improved error message
         throw new Error("Auth error. Invalid parameter received.");
       }
 
