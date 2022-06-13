@@ -1,7 +1,7 @@
 import React from "react";
 import NearbyRestroomList from "../components/nearbyRestroomsList";
 import CssBaseline from "@mui/material/CssBaseline";
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import CardContent from "@mui/material/CardContent";
@@ -21,20 +21,15 @@ const styles = {
     backgroundImage: `url(${toiletPaper})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    // height: 1300,
   },
   divStyle: {
     overflowY: "scroll",
-    // border: "1px solid red",
     width: "500px",
-    // float: "left",
     height: "500px",
     position: "relative",
     marginLeft: "auto",
     marginRight: "auto",
     backgroundColor: "#F9F9F9",
-    // color: "white",
-    // fontSize: "30px",
   },
 };
 
@@ -49,21 +44,14 @@ export default function RestroomsNearYou() {
         direction="column"
         style={{ minHeight: "100vh" }}
       >
-        {/* <h3
-          style={{
-            textAlignVertical: "center",
-            textAlign: "center",
-            backgroundColor: "rgba(52, 52, 52, 0.8)",
-            color: "white",
-          }}
+        <Alert
+          variant="filled"
+          severity="info"
+          sx={{ mb: 2, fontSize: "20px" }}
         >
           Login or Sign up to add a new restroom OR leave a review
-        </h3> */}
-        <Alert  variant="filled" severity="info" sx={{mb: 2}}>
-        Login or Sign up to add a new restroom OR leave a review
-      </Alert>
+        </Alert>
         <Card
-          // style={{ maxWidth: 650, padding: "20px 5px", borderRadius: "16px", backgroundColor: 'transparent', }}
           style={{
             maxWidth: 650,
             padding: "20px 5px",
@@ -73,10 +61,7 @@ export default function RestroomsNearYou() {
           }}
         >
           <CardContent>
-            {/* <div style={styles.divStyle}> */}
-              {/* put components here */}
-              <NearbyRestroomList/>
-            {/* </div> */}
+            <NearbyRestroomList />
           </CardContent>
         </Card>
       </Grid>

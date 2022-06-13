@@ -22,12 +22,6 @@ const ReviewList = ({ reviews = [] }) => {
       <div className="flex-row my-4">
         {reviews &&
           reviews.map((review) => (
-            // <div key={review._id} className="col-12 mb-3 pb-3">
-            //   <div className="p-3 bg-dark text-light">
-            //     <p className="card-body">{review.reviewText}</p>
-            //     <p className="card-body">{review.rating + " stars"}</p>
-            //   </div>
-            // </div>
             <div key={review.toString()}>
               <Accordion sx={{ bgcolor: "#C1DEAE", my: 1 }}>
                 <AccordionSummary
@@ -40,8 +34,14 @@ const ReviewList = ({ reviews = [] }) => {
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>Review: {review.reviewText}</Typography>
-                  <Typography>Rating: {review.rating + " stars"}</Typography>
+                  <Typography sx={{ mb: 2 }}>
+                    <strong>Review: </strong>
+                    {review.reviewText}
+                  </Typography>
+                  <Typography>
+                    <strong>Rating: </strong>
+                    {review.rating + " stars"}
+                  </Typography>
                   <Rating name="read-only" value={review.rating} readOnly />
                 </AccordionDetails>
               </Accordion>

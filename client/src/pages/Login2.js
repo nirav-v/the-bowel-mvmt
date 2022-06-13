@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import { useAuth } from "../util/auth";
-// import blueToilets from "../images/blue_toilets.jpeg";
 import pinkToiletPaper from "../images/pink-paper.jpg";
 import Paper from "@mui/material/Paper";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,11 +11,6 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-// This signup form is intentionally minimalist to reduce effort required to
-// customize it to your app's needs. See the excellent best practices guide for
-// sign informs on web.dev https://web.dev/sign-in-form-best-practices/
-
-// TODO: customize styles or import styles with favorite css approach
 const styles = {
   formControl: {
     display: "flex",
@@ -30,7 +24,6 @@ const styles = {
     backgroundImage: `url(${pinkToiletPaper})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    // height: 1300,
   },
 };
 
@@ -46,7 +39,6 @@ export default function Login2() {
 
   useEffect(() => {
     if (error) {
-      // TODO: replace window alert with custom alert
       alert(error);
     }
   }, [error]);
@@ -62,7 +54,6 @@ export default function Login2() {
   };
 
   if (isLoggedIn) {
-    // navigate to page user was redirected from or the user page.
     const from = location.state?.from?.pathname || "/userPage";
     return <Navigate to={from} replace />;
   }
@@ -78,7 +69,6 @@ export default function Login2() {
         style={{ minHeight: "100vh" }}
       >
         <Card
-          // style={{ maxWidth: 650, padding: "20px 5px", borderRadius: "16px", backgroundColor: 'transparent', }}
           style={{
             maxWidth: 650,
             padding: "20px 5px",
@@ -102,7 +92,6 @@ export default function Login2() {
                     Email
                   </Typography>
                   <TextField
-                    // label="Email"
                     placeholder="Enter email"
                     fullWidth
                     required
@@ -123,7 +112,6 @@ export default function Login2() {
                     Password
                   </Typography>
                   <TextField
-                    // label="Password"
                     placeholder="Enter password"
                     fullWidth
                     required
@@ -142,7 +130,6 @@ export default function Login2() {
                     type="submit"
                     disabled={loading}
                   >
-                    {/* Submit */}
                     {loading ? "Loading..." : "Submit"}
                   </Button>
                 </Grid>

@@ -4,12 +4,11 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import BMLogo from "./logo";
-// import { NavLink } from "react-router-dom";
 import { useAuth } from "../util/auth";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import "./Navbar.css";
-import { ClassNames } from "@emotion/react";
+// import { ClassNames } from "@emotion/react";
 
 export default function Navbar4() {
   const { isLoggedIn, logout } = useAuth();
@@ -17,7 +16,6 @@ export default function Navbar4() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: "background.paper" }}>
         <Toolbar>
-          {/* <Grid container spacing={1} alignItems="center" direction="row" justifyContent="flex-end"> */}
           <Grid
             container
             spacing={0}
@@ -25,21 +23,10 @@ export default function Navbar4() {
             direction="row"
             justifyContent="space-between"
           >
-            {/* <Stack
-              // spacing={{ xs: 2, sm: 3, md: 5 }}
-              direction={{ xs: "column", sm: "row" }}
-            > */}
-            {/* <Grid item xs={12} md={4}> */}
             <div style={{ padding: "18px 20px 0px 20px" }}>
               <BMLogo />
             </div>
-            {/* </Grid> */}
-            {/* <Grid item xs={12} md={8}> */}
-            <Stack
-              // spacing={{ xs: 2, sm: 3, md: 5 }}
-              direction={{ xs: "column", sm: "row" }}
-              // spacing={0}
-            >
+            <Stack direction={{ xs: "column", sm: "row" }}>
               {isLoggedIn ? (
                 <>
                   <Button
@@ -49,9 +36,8 @@ export default function Navbar4() {
                       my: 0,
                       color: "black",
                       display: "block",
-                      fontWeight: "bold"
+                      fontWeight: "bold",
                     }}
-                    // style={{ verticalAlign: "middle", color: "black" }}
                     size="large"
                     href="/userpage"
                   >
@@ -64,9 +50,8 @@ export default function Navbar4() {
                       my: 0,
                       color: "black",
                       display: "block",
-                      fontWeight: "bold"
+                      fontWeight: "bold",
                     }}
-                    // style={{ verticalAlign: "middle", color: "black" }}
                     size="large"
                     href="/"
                     onClick={logout}
@@ -77,21 +62,36 @@ export default function Navbar4() {
               ) : (
                 <>
                   <Button
-                    sx={{ my: 2, color: "black", display: "block", fontWeight: "bold" }}
+                    sx={{
+                      my: 2,
+                      color: "black",
+                      display: "block",
+                      fontWeight: "bold",
+                    }}
                     size="large"
                     href="/"
                   >
                     Home
                   </Button>
                   <Button
-                    sx={{ my: 2, color: "black", display: "block", fontWeight: "bold" }}
+                    sx={{
+                      my: 2,
+                      color: "black",
+                      display: "block",
+                      fontWeight: "bold",
+                    }}
                     size="large"
                     href="/login"
                   >
                     Login
                   </Button>
                   <Button
-                    sx={{ my: 2, color: "black", display: "block", fontWeight: "bold" }}
+                    sx={{
+                      my: 2,
+                      color: "black",
+                      display: "block",
+                      fontWeight: "bold",
+                    }}
                     size="large"
                     href="/signup"
                   >
@@ -99,7 +99,6 @@ export default function Navbar4() {
                   </Button>
                 </>
               )}
-              {/* </Grid> */}
             </Stack>
           </Grid>
         </Toolbar>

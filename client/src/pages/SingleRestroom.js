@@ -7,8 +7,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Rating from '@mui/material/Rating';
-import Box from '@mui/material/Box';
+import Rating from "@mui/material/Rating";
+import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
 
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
@@ -18,16 +19,15 @@ import ReviewList from "../components/ReviewList";
 
 import { SINGLERESTROOM } from "../util/queries";
 import { SAVE_RESTROOM } from "../util/mutations";
-import { removeClientSetsFromDocument } from "@apollo/client/utilities";
+// import { removeClientSetsFromDocument } from "@apollo/client/utilities";
 import AddReviewForm from "../components/AddReviewForm/index";
-import { VariablesInAllowedPositionRule } from "graphql";
+// import { VariablesInAllowedPositionRule } from "graphql";
 
 const styles = {
   paperContainer: {
     backgroundImage: `url(${rolls})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    // height: 1300,
   },
 };
 
@@ -39,9 +39,9 @@ export default function SingleRestroom() {
   });
 
   const restroom = data?.singleRestroom || {};
-  console.log(restroom)
-   const reviews = data?.singleRestroom.reviews || {};
-   console.log(reviews)
+  console.log(restroom);
+  const reviews = data?.singleRestroom.reviews || {};
+  console.log(reviews);
 
   // logic for getting average rating
   if (reviews.length) {
@@ -66,25 +66,12 @@ export default function SingleRestroom() {
     }
   };
 
-  // const [value, setValue] = React.useState(0);
-
   if (loading) {
     return <div>Loading...</div>;
   }
   return (
     <Paper style={styles.paperContainer} sx={{ height: "100%" }}>
       <CssBaseline />
-      <Typography
-        gutterBottom
-        variant="h5"
-        sx={{ fontWeight: "bold", py: 2 }}
-        style={{
-          textAlignVertical: "center",
-          textAlign: "center",
-        }}
-      >
-        View restroom and reviews
-      </Typography>
       <Grid
         container
         justifyContent="center"
@@ -92,8 +79,17 @@ export default function SingleRestroom() {
         direction="column"
         style={{ minHeight: "100vh" }}
       >
+        <Alert
+          icon={false}
+          severity="warning"
+          style={{
+            fontSize: "20px",
+            margin: "15px",
+          }}
+        >
+          <strong>View Restroom And Reviews</strong>
+        </Alert>
         <Card
-          // style={{ maxWidth: 650, padding: "20px 5px", borderRadius: "16px", backgroundColor: 'transparent', }}
           style={{
             maxWidth: 650,
             padding: "20px 5px",
@@ -103,45 +99,50 @@ export default function SingleRestroom() {
           }}
         >
           <CardContent>
-            <div>
+            <div style={{ textAlign: "center" }}>
               <Typography gutterBottom>
-                Location: {restroom.areaDescription}
+                <strong>Location: </strong>
+                {restroom.areaDescription}
               </Typography>
               <Typography gutterBottom>
-                Key/Code Required:{" "}
+                <strong>Key/Code Required: </strong>{" "}
                 {restroom.keyRequired === true ? "Yes" : "No"}
               </Typography>
               <Typography gutterBottom>
-                Changing Station:{" "}
+                <strong>Changing Station: </strong>{" "}
                 {restroom.changingStation === true ? "Yes" : "No"}
               </Typography>
               <Typography gutterBottom>
-                ADA Accessible: {restroom.adaAccessible === true ? "Yes" : "No"}
+                <strong>ADA Accessible: </strong>
+                {restroom.adaAccessible === true ? "Yes" : "No"}
               </Typography>
               <Typography gutterBottom>
-                Average Rating: {avgRating? avgRating + " out of 5 stars" : "No Reviews Yet"}
+                <strong>Average Rating: </strong>{" "}
+                {avgRating ? avgRating + " out of 5 stars" : "No Reviews Yet"}
               </Typography>
-              <Rating name="read-only" value={avgRating? avgRating: null} precision={0.1} readOnly />
+              <Rating
+                name="read-only"
+                value={avgRating ? avgRating : null}
+                precision={0.1}
+                readOnly
+              />
             </div>
-            {/* <form onSubmit={handleSubmit}> */}
             <form>
               <div className="my-3">
-                {/* <h3 className="card-header bg-dark text-light p-2 m-0">
-                  User reviews here
-                </h3> */}
                 <div className="bg-light py-4">
                   <blockquote
                     className="p-4"
                     style={{
-                      fontSize: "1.5rem",
+                      fontSize: "30px",
                       fontStyle: "italic",
                       border: "2px dotted #1a1a1a",
                       lineHeight: "1.5",
+                      textAlign: "center",
                     }}
                   >
-                    {restroom.areaDescription}
+                    <strong>{restroom.areaDescription}</strong>
                   </blockquote>
-                  <Box textAlign='center'>
+                  <Box textAlign="center">
                     <Button
                       variant="contained"
                       sx={{ textTransform: "capitalize" }}

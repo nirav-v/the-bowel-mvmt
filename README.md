@@ -38,38 +38,58 @@ THEN user will be redirected back to the view restroom list page
 
 # Technologies Used
 
-## CSS Framework
+## React UI Components Library
 
-Material UI
+- React
+- Material UI
 
 ## Database/Models
 
-MongoDB
+- MongoDB
+- GraphQL API
+- Node.js
+- Express.js
 
 #
 
 # Deployed Application
 
-Heroku
+[Heroku](https://ancient-refuge-47910.herokuapp.com/)
 
 #
 
 ## Homepage
 
-## Login Page
-
-## Sign Up Page
-
-## User Page
+![homepage](./client/src/images/homepage.png)
 
 ## Nearby Restroom List Page (not yet login)
 
+![restroomList](<./client/src/images/restroomList(notLogin).png>)
+
+## Login Page
+
+![loginpage](./client/src/images/loginpage.png)
+
+## Sign Up Page
+
+![signuppage](./client/src/images/signuppage.png)
+
+## User Page
+
+![userpage](./client/src/images/userpage.png)
+
 ## Add A Restroom Page
+
+![addRestroom](./client/src/images/addrestroompage.png)
 
 ## Saved Restroom Page
 
+![savedRestroom](./client/src/images/savedRestroompage.png)
+
 ## Restroom With View/Add Reviews Page
+
+![viewAddpage](./client/src/images/reviewpage.png)
 
 #
 
-© 2022 IPee Addresses: Nirav Venkatesan, Qiling Deng, Christina Christiansen, Kevin Wang
+© 2022 IPee Addresses: [Nirav Venkatesan](https://github.com/nirav-v), [Qiling Deng](https://github.com/qd9069), [Christina Christiansen](https://github.com/christinaa126), [Kevin Wang](https://github.com/ohdeer31)
