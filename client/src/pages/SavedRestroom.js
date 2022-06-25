@@ -13,9 +13,10 @@ import ListItemText from "@mui/material/ListItemText";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
 // import { useState, useEffect } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 
 import { ME } from "../util/queries";
+import { REMOVE_SAVED_RESTROOM } from "../util/mutations";
 
 const styles = {
   paperContainer: {
@@ -27,8 +28,18 @@ const styles = {
 
 export default function SavedRestroom() {
   const { loading, data, error } = useQuery(ME);
+  const [removeSavedRestroom] = useMutation(REMOVE_SAVED_RESTROOM);
 
   const userData = data?.me || {};
+  const handleDeleteSavedRestroom = async (restroomId) => {
+    try {
+      const updatedSavedRestrooms = await removeSavedRestroom({
+        variables: {
+          restroomId: restroomId,
+        },
+      });
+    } catch (error) {}
+  };
 
   console.log(userData);
   console.log(userData.savedRestrooms);
@@ -85,6 +96,13 @@ export default function SavedRestroom() {
                       <FavoriteIcon />
                     </ListItemIcon>
                     <ListItemText primary={restroom.areaDescription} />
+                  </ListItemButton>
+                  <ListItemButton
+                    onClick={() => {
+                      handleDeleteSavedRestroom(restroom._id);
+                    }}
+                  >
+                    Delete
                   </ListItemButton>
                 </ListItem>
               </List>
