@@ -56,6 +56,35 @@ mutation SaveRestroom($id: ID!) {
 }
 `;
 
+export const REMOVE_SAVED_RESTROOM = gql`
+mutation RemoveSavedRestroom($restroomId: ID!) {
+  removeSavedRestroom(restroomId: $restroomId) {
+    username
+    savedRestrooms {
+      _id
+      areaDescription
+      location {
+        type
+        coordinates
+      }
+      changingStation
+      keyRequired
+      adaAccessible
+      reviews {
+        reviewText
+        rating
+        createdAt
+        username
+        userId
+      }
+    }
+    _id
+    email
+    lastLogin
+  }
+}
+`
+
 export const ADD_REVIEW = gql`
   mutation AddReview($restroomId: ID!, $reviewText: String!, $rating: Float!) {
   addReview(restroomId: $restroomId, reviewText: $reviewText, rating: $rating) {

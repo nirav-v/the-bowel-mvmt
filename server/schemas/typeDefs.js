@@ -17,9 +17,8 @@ const typeDefs = gql`
     createUser(email: String!, password: String!, username: String!): Auth
     login(email: String!, password: String!): Auth
 
-    saveRestroom(
-      _id: ID!
-    ): User
+    saveRestroom(_id: ID!): User
+    removeSavedRestroom(restroomId: ID!): User
 
     createRestroom(
       areaDescription: String!
