@@ -14,6 +14,8 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useMutation } from "@apollo/client";
 import { CREATE_RESTROOM } from "../util/mutations";
+import { useCoords } from "../components/nearbyRestroomsList";
+import { Switch } from "@mui/material";
 
 const styles = {
   paperContainer: {
@@ -35,6 +37,9 @@ export default function AddRestroom() {
   const [checkedOne, setCheckedOne] = useState(false);
   const [checkedTwo, setCheckedTwo] = useState(false);
   const [checkedThree, setCheckedThree] = useState(false);
+  const [currentCoordsChoice, setCurrentCoordsChoice] = useState(false);
+
+  const userCoords = useCoords();
 
   const [
     createRestroom,
@@ -64,21 +69,39 @@ export default function AddRestroom() {
     setCheckedThree(!checkedThree);
   };
 
+  const handleCurrentCoords = () => {
+    setCurrentCoordsChoice(!currentCoordsChoice);
+    // console.log(!currentCoordsChoice);
+  };
+
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     console.log(formState);
 
     try {
-      createRestroom({
-        variables: {
-          areaDescription: formState.location,
-          changingStation: checkedTwo,
-          keyRequired: checkedOne,
-          adaAccessible: checkedThree,
-          lat: parseFloat(formState.latitude),
-          lon: parseFloat(formState.longitude),
-        },
-      });
+      if (currentCoordsChoice === true) {
+        createRestroom({
+          variables: {
+            areaDescription: formState.location,
+            changingStation: checkedTwo,
+            keyRequired: checkedOne,
+            adaAccessible: checkedThree,
+            lat: userCoords.coords.lat,
+            lon: userCoords.coords.lon,
+          },
+        });
+      } else {
+        createRestroom({
+          variables: {
+            areaDescription: formState.location,
+            changingStation: checkedTwo,
+            keyRequired: checkedOne,
+            adaAccessible: checkedThree,
+            lat: parseFloat(formState.latitude), //using coords that the user manually enters instead
+            lon: parseFloat(formState.longitude),
+          },
+        });
+      }
       alert("New restroom has been added successfully!");
     } catch (err) {
       console.log(err);
@@ -127,32 +150,48 @@ export default function AddRestroom() {
                     component="p"
                     color="textSecondary"
                   >
-                    Coordinates
+                    <FormControlLabel
+                      control={<Switch checked={currentCoordsChoice} />}
+                      label="Use my Current Location"
+                      labelPlacement="start"
+                      onChange={handleCurrentCoords}
+                    />
                   </Typography>
-                  <TextField
-                    label="Latitude"
-                    placeholder="Insert latitude"
-                    fullWidth
-                    required
-                    name="latitude"
-                    disabled={loading}
-                    value={formState.latitude}
-                    onChange={handleInputChange}
-                    inputProps={{ inputMode: "numeric", pattern: "[0-9.-]*" }}
-                    id="margin-normal"
-                    margin="normal"
-                  />
-                  <TextField
-                    label="Longitude"
-                    placeholder="Insert longitude"
-                    fullWidth
-                    required
-                    name="longitude"
-                    disabled={loading}
-                    value={formState.longitude}
-                    onChange={handleInputChange}
-                    inputProps={{ inputMode: "numeric", pattern: "[0-9.-]*" }}
-                  />
+                  {!currentCoordsChoice ? (
+                    <div>
+                      OR Paste Coordinates Manualy Below
+                      <TextField
+                        label="Latitude ( leave blank if using current location )"
+                        placeholder="Insert latitude"
+                        fullWidth
+                        required
+                        name="latitude"
+                        disabled={loading}
+                        value={formState.latitude}
+                        onChange={handleInputChange}
+                        inputProps={{
+                          inputMode: "numeric",
+                          pattern: "[0-9.-]*",
+                        }}
+                        id="margin-normal"
+                        margin="normal"
+                      />
+                      <TextField
+                        label="Longitude ( leave blank if using current location )"
+                        placeholder="Insert longitude"
+                        fullWidth
+                        required
+                        name="longitude"
+                        disabled={loading}
+                        value={formState.longitude}
+                        onChange={handleInputChange}
+                        inputProps={{
+                          inputMode: "numeric",
+                          pattern: "[0-9.-]*",
+                        }}
+                      />
+                    </div>
+                  ) : null}
                 </Grid>
                 <Grid xs={12} item>
                   <Typography
