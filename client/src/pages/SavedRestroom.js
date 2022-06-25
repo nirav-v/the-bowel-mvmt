@@ -11,6 +11,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useNavigate } from "react-router-dom";
 // import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
@@ -102,7 +103,7 @@ export default function SavedRestroom() {
                       handleDeleteSavedRestroom(restroom._id);
                     }}
                   >
-                    Delete
+                    <DeleteForeverIcon />
                   </ListItemButton>
                 </ListItem>
               </List>
