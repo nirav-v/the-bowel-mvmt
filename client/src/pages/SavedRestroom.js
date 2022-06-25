@@ -11,7 +11,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useNavigate } from "react-router-dom";
 // import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
@@ -32,6 +32,7 @@ export default function SavedRestroom() {
   const [removeSavedRestroom] = useMutation(REMOVE_SAVED_RESTROOM);
 
   const userData = data?.me || {};
+
   const handleDeleteSavedRestroom = async (restroomId) => {
     try {
       const updatedSavedRestrooms = await removeSavedRestroom({

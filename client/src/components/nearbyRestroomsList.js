@@ -52,7 +52,7 @@ export default function NearbyRestroomList() {
   }, [userCoords.coords, getNearbyRestrooms]);
 
   if (userCoords.pending) {
-    return <h2>your location is needed to find nearby restrooms</h2>;
+    return <h2>finding your location...</h2>;
   }
 
   if (error || userCoords.error) {
