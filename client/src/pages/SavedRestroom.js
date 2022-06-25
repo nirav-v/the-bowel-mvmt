@@ -40,7 +40,10 @@ export default function SavedRestroom() {
           restroomId: restroomId,
         },
       });
-    } catch (error) {}
+      return updatedSavedRestrooms;
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   console.log(userData);
