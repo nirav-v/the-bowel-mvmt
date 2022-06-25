@@ -22,7 +22,7 @@ const resolvers = {
         return Restroom.find({
           location: {
             $near: {
-              $maxDistance: 100000,
+              $maxDistance: 10000000,
               $geometry: {
                 type: "Point",
                 coordinates: [args.lon, args.lat], // takes an array [lon, lat], pass in the userLocation variable on client side

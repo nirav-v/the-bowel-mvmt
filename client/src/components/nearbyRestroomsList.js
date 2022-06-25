@@ -9,7 +9,7 @@ import { Navigate } from "react-router-dom";
 
 import { NEARBY_RESTROOMS } from "../util/queries";
 
-const useCoords = () => {
+export const useCoords = () => {
   const [error, setError] = useState(null);
   const [coords, setCoords] = useState(null);
   const [pending, setPending] = useState(true);

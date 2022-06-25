@@ -66,7 +66,7 @@
       {
         "reviewText": "had lots of toilet paper",
         "rating": 4.5,
-        "username": "andy",
+        "username": "billy",
         "userId": "62a164ad96ebb956465ced3e"
       }
     ]
@@ -155,7 +155,7 @@
     "reviews": [
       {
         "reviewText": "Avoid this place at all costs. Seems to never be maintained and always smells very bad every time I go",
-        "rating": 4.5,
+        "rating": 1,
         "username": "smart-dude62",
         "userId": "62a38490936dc4a82b2ee62a"
       }
