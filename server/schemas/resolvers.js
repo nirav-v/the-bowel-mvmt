@@ -146,6 +146,18 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+
+    removeSavedRestroom: async (parent, { restroomId }, context) => {
+      if (context.user) {
+        // console.log(restroomId)
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedRestrooms: restroomId } },
+          { new: true }
+        ).populate("savedRestrooms");
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 
