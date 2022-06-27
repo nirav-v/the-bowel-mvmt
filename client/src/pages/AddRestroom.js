@@ -16,6 +16,8 @@ import { useMutation } from "@apollo/client";
 import { CREATE_RESTROOM } from "../util/mutations";
 import { useCoords } from "../components/nearbyRestroomsList";
 import { Switch } from "@mui/material";
+import cat from "../images/cat.gif";
+import Swal from "sweetalert2";
 
 const styles = {
   paperContainer: {
@@ -102,10 +104,28 @@ export default function AddRestroom() {
           },
         });
       }
-      alert("New restroom has been added successfully!");
+      // alert("New restroom has been added successfully!");
+      Swal.fire({
+        icon: "success",
+        title: "New restroom has been added successfully!",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url(${cat})
+          left top
+          no-repeat
+          `,
+      });
     } catch (err) {
       console.log(err);
-      alert("Error, please check your entries or try again later");
+      // alert("Error, please check your entries or try again later");
+      Swal.fire({
+        icon: "error",
+        title: "Error, please check your entries or try again later",
+        // text: error,
+        backdrop: `
+          rgba(0,0,123,0.4)
+          `,
+      });
     }
 
     setFormState({

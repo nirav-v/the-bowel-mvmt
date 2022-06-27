@@ -6,7 +6,7 @@ import AccessibleIcon from "@mui/icons-material/Accessible";
 import BabyChangingStationIcon from "@mui/icons-material/BabyChangingStation";
 import KeyIcon from "@mui/icons-material/Key";
 import { Navigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
 import { NEARBY_RESTROOMS } from "../util/queries";
 
 export const useCoords = () => {
@@ -56,7 +56,15 @@ export default function NearbyRestroomList() {
   }
 
   if (error || userCoords.error) {
-    alert("unexpected server error, redirecting to home page...");
+    // alert("unexpected server error, redirecting to home page...");
+    Swal.fire({
+      icon: "error",
+      title: "Unexpected server error, redirecting to home page...",
+      // text: error,
+      backdrop: `
+        rgba(0,0,123,0.4)
+        `,
+    });
     return <Navigate to="/" />;
   }
 
