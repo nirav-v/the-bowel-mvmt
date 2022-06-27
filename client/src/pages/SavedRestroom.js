@@ -15,6 +15,8 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useNavigate } from "react-router-dom";
 // import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
+import cat from "../images/cat.gif";
+import Swal from "sweetalert2";
 
 import { ME } from "../util/queries";
 import { REMOVE_SAVED_RESTROOM } from "../util/mutations";
@@ -40,9 +42,29 @@ export default function SavedRestroom() {
           restroomId: restroomId,
         },
       });
+      // alert("Saved restroom has been deleted successfully!");
+      Swal.fire({
+        icon: "success",
+        title: "Saved restroom has been deleted successfully!",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url(${cat})
+          left top
+          no-repeat
+          `,
+      });
       return updatedSavedRestrooms;
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      // alert("Error, please try again later");
+      Swal.fire({
+        icon: "error",
+        title: "Error, please try again later",
+        // text: error,
+        backdrop: `
+          rgba(0,0,123,0.4)
+          `,
+      });
     }
   };
 

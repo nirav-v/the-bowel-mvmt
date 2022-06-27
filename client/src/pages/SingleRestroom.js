@@ -10,6 +10,8 @@ import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
+import cat from "../images/cat.gif";
+import Swal from "sweetalert2";
 
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
@@ -59,10 +61,28 @@ export default function SingleRestroom() {
           id: restroomId,
         },
       });
-      alert("Restroom has been saved successfully!");
+      // alert("Restroom has been saved successfully!");
+      Swal.fire({
+        icon: "success",
+        title: "Restroom has been saved successfully!",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url(${cat})
+          left top
+          no-repeat
+          `,
+      });
     } catch (error) {
       console.log(error);
-      alert("Error, please try again later");
+      // alert("Error, please try again later");
+      Swal.fire({
+        icon: "error",
+        title: "Error, please try again later",
+        // text: error,
+        backdrop: `
+          rgba(0,0,123,0.4)
+          `,
+      });
     }
   };
 
