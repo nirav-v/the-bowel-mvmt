@@ -54,7 +54,7 @@ THEN user will be redirected back to the view restroom list page
 
 # Deployed Application
 
-[Heroku](https://the-bowel-mvmt.herokuapp.com/userpage)
+[Heroku](https://the-bowel-mvmt.herokuapp.com/)
 
 #
 
