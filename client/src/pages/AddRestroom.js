@@ -82,7 +82,7 @@ export default function AddRestroom() {
 
     try {
       if (currentCoordsChoice === true) {
-        createRestroom({
+        await createRestroom({
           variables: {
             areaDescription: formState.location,
             changingStation: checkedTwo,
@@ -93,7 +93,7 @@ export default function AddRestroom() {
           },
         });
       } else {
-        createRestroom({
+        await createRestroom({
           variables: {
             areaDescription: formState.location,
             changingStation: checkedTwo,
