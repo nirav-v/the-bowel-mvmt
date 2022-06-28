@@ -82,7 +82,7 @@ export default function AddRestroom() {
 
     try {
       if (currentCoordsChoice === true) {
-        createRestroom({
+        await createRestroom({
           variables: {
             areaDescription: formState.location,
             changingStation: checkedTwo,
@@ -93,7 +93,7 @@ export default function AddRestroom() {
           },
         });
       } else {
-        createRestroom({
+        await createRestroom({
           variables: {
             areaDescription: formState.location,
             changingStation: checkedTwo,
@@ -101,8 +101,6 @@ export default function AddRestroom() {
             adaAccessible: checkedThree,
             lat: parseFloat(formState.latitude), //using coords that the user manually enters instead
             lon: parseFloat(formState.longitude),
-            // lat: Math.min(Math.max(parseFloat(formState.latitude), -90), 90),
-            // lon: Math.min(Math.max(parseFloat(formState.longitude), -180), 180),
           },
         });
       }
