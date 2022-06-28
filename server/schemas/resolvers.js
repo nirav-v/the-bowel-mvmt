@@ -75,12 +75,10 @@ const resolvers = {
     createRestroom: async (parent, args, context) => {
       if (context.user) {
         try {
-          const restroom = await Restroom.create({
+          return Restroom.create({
             ...args,
             location: { type: "Point", coordinates: [args.lon, args.lat] },
           });
-
-          return restroom;
         } catch (error) {
           console.log(error);
         }
