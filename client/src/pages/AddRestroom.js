@@ -99,10 +99,10 @@ export default function AddRestroom() {
             changingStation: checkedTwo,
             keyRequired: checkedOne,
             adaAccessible: checkedThree,
-            // lat: parseFloat(formState.latitude), //using coords that the user manually enters instead
-            // lon: parseFloat(formState.longitude),
-            lat: Math.min(Math.max(parseFloat(formState.latitude), -90), 90),
-            lon: Math.min(Math.max(parseFloat(formState.longitude), -180), 180),
+            lat: parseFloat(formState.latitude), //using coords that the user manually enters instead
+            lon: parseFloat(formState.longitude),
+            // lat: Math.min(Math.max(parseFloat(formState.latitude), -90), 90),
+            // lon: Math.min(Math.max(parseFloat(formState.longitude), -180), 180),
           },
         });
       }
